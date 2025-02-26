@@ -735,59 +735,7 @@
         },
         "distance": 5000 
       },
-      {
-        "id": "ORDER015",
-        "status": "Unloading",
-        "origin": {
-          "city": "Lisbon",
-          "state": "Lisbon",
-          "country": "Portugal",
-          "latitude": 38.7223,
-          "longitude": -9.1393
-        },
-        "destination": {
-          "city": "Durban",
-          "state": "KwaZulu-Natal",
-          "country": "South Africa",
-          "latitude": -29.8587,
-          "longitude": 31.0241
-        },
-        "current_location": {
-          "latitude": -29.8587,
-          "longitude": 31.0241
-        },
-        "eta": "2025-02-25",
-        "last_updated": "2025-02-24T16:30:00Z",
-        "updates": [
-          { "timeline": "2025-02-18T14:00:00Z", "state": "Loaded" },
-          { "timeline": "2025-02-20T18:00:00Z", "state": "In Transit" },
-          { "timeline": "2025-02-24T15:00:00Z", "state": "Arrived at Destination" },
-          { "timeline": "2025-02-24T16:30:00Z", "state": "Unloading" }
-        ],
-        "state_of_transit": "Unloading",
-        "shipment_statistics": {
-          "shipment_per_date": "2025-02-18",
-          "estimated_date_left": "2025-02-20"
-        },
-        "vehicle_information": {
-          "vehicle_number": "LMN012",
-          "vehicle_type": "Cargo Ship"
-        },
-        "customer_information": {
-          "customer_id": "CUST015",
-          "customer_name": "Ana Silva"
-        },
-        "package_information": {
-          "package_id": "PKG015",
-          "weight": 1300,
-          "dimensions": {
-            "length": 380,
-            "width": 270,
-            "height": 250
-          }
-        },
-        "distance": 8000
-      },
+      
       {
         "id": "ORDER015",
         "status": "Unloading",
@@ -2349,57 +2297,7 @@
         },
         "distance": 7000
       },
-      {
-        "id": "ORDER045",
-        "status": "In Transit",
-        "origin": {
-          "city": "Brussels",
-          "state": "Brussels-Capital Region",
-          "country": "Belgium",
-          "latitude": 50.8503,
-          "longitude": 4.3517
-        },
-        "destination": {
-          "city": "Harare",
-          "state": "Harare Province",
-          "country": "Zimbabwe",
-          "latitude": -17.8212,
-          "longitude": 31.0533
-        },
-        "current_location": {
-          "latitude": -1.2921, 
-          "longitude": 36.8219
-        },
-        "eta": "2025-03-20", 
-        "last_updated": "2025-02-23T22:55:01Z", 
-        "updates": [
-          { "timeline": "2025-03-12T10:00:00Z", "state": "Loaded" },
-          { "timeline": "2025-03-14T14:00:00Z", "state": "In Transit" }
-        ],
-        "state_of_transit": "In Transit",
-        "shipment_statistics": {
-          "shipment_per_date": "2025-03-12",
-          "estimated_date_left": "2025-03-14"
-        },
-        "vehicle_information": {
-          "vehicle_number": "ABC789",
-          "vehicle_type": "Cargo Plane"
-        },
-        "customer_information": {
-          "customer_id": "CUST045",
-          "customer_name": "Sophie Martin"
-        },
-        "package_information": {
-          "package_id": "PKG045",
-          "weight": 4300,
-          "dimensions": {
-            "length": 980,
-            "width": 860,
-            "height": 840
-          }
-        },
-        "distance": 7500
-      },
+      
       {
         "id": "ORDER045",
         "status": "In Transit",

@@ -18,13 +18,13 @@ function App() {
     <Router>
       <AppProvider>
         
-        <div className="flex bg-bkground relative px-4 py-6 dark-theme">
+        <div className="flex bg-bkground  relative px-2 py-4 sm:px-4 sm:py-6">
           
           <Sidebar pages = {pages} setPages = {setPages} />
           
 
           
-          <div className="  flex flex-col flex-1 px-3 ">
+          <div className="md:ml-52  flex flex-col flex-1 px-3 ">
             <SearchBar/>
             <Routes>
               <Route path="/" element={<Dashboard/>}/>
