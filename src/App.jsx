@@ -4,7 +4,7 @@ import Dashboard from "./Dashboard"
 import Invoice from "./Invoice"
 import Map from "./Map"
 import SearchBar from "./SearchBar"
-import Sidebar from "./sidebar"
+import Sidebar from "./Sidebar"
 import { BrowserRouter as Router,Routes,Route } from "react-router"
 import { AppProvider } from "./Context"
 
