@@ -1,4 +1,4 @@
-import OverviewItem from "./overviewItem";
+import OverviewItem from "./OverviewItem";
 import { useContext} from "react";
 import { AppContext } from "../Context";
 
