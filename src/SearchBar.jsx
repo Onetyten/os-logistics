@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { faBell, faMoon, faSun, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -6,7 +6,6 @@ export default function SearchBar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check local storage for theme preference on mount
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme === 'dark') {
       setIsDarkMode(true);

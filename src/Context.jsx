@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { createContext, useEffect, useState } from "react"
+import { createContext,useRef ,useEffect, useState } from "react"
 import PropTypes, { object } from "prop-types"
 import axios from "axios"
 
@@ -36,6 +36,8 @@ const AppProvider = ({children}) => {
     const [oCheckingSize,setOCheckingSize] =  useState(0)
     const [oUnLoadingSize,setOUnLoadingSize] =  useState(0)
 
+    const ws = useRef(null);
+
 
 
     // fetch json from orders.json
@@ -70,7 +72,7 @@ const AppProvider = ({children}) => {
             const shipmentDate = order.shipment_statistics?.shipment_per_date;
             const eta = order.eta;
       
-            if (!shipmentDate) return acc; // Skip if shipment date is null
+            if (!shipmentDate) return acc;
       
             acc[shipmentDate] = acc[shipmentDate] || { date: shipmentDate, count: 0, eta: [] };
             acc[shipmentDate].count += 1;
@@ -113,10 +115,10 @@ const AppProvider = ({children}) => {
         if (monthlyShipment.length === 0) return;
       
         const processed = monthlyShipment.map((shipment, index) => {
-          if (!shipment.eta.length) return null; // Skip if no ETA
+          if (!shipment.eta.length) return null;
       
           const shipmentDate = new Date(shipment.date);
-          const etaDate = new Date(shipment.eta[0]); // Assuming the first ETA date is the main one
+          const etaDate = new Date(shipment.eta[0]);
       
           const daysDifference = (etaDate - shipmentDate) / (1000 * 60 * 60 * 24);
       
@@ -143,6 +145,60 @@ const AppProvider = ({children}) => {
     },[OnRoute,oDelivered,oLoading,oDelayed,oInStorage,oCancelled,oChecking,oUnLoading])
 
 
+// Initialize WebSocket
+  useEffect(() => {
+    const connectWebSocket = () => {
+    ws.current = new WebSocket("wss://echo.websocket.events");
+
+      ws.current.onopen = () => {
+        console.log("WebSocket connected");
+      };
+
+      ws.current.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.type === "new_order") {
+            setOrders((prevOrders) => [...prevOrders, data.order]);
+          }
+          if (data.type === "update_order") {
+            setOrders((prevOrders) =>
+              prevOrders.map((order) => (order.id === data.order.id ? data.order : order))
+            );
+          }
+        } catch (error) {
+          console.log("Error parsing WebSocket message:", error);
+        }
+      };
+
+      ws.current.onclose = () => {
+        console.log("WebSocket disconnected. Reconnecting...");
+        setTimeout(connectWebSocket, 5000); // Reconnect after 5 seconds
+      };
+
+      ws.current.onerror = (error) => {
+        console.log("WebSocket error:", error);
+        ws.current.close();
+      };
+    };
+
+    connectWebSocket();
+
+    return () => {
+      if (ws.current) {
+        ws.current.close();
+      }
+    };
+  }, []);
+
+  // Function to send messagesthrough WebSocket
+  const sendMessage = (message) => {
+    if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+      ws.current.send(JSON.stringify(message));
+    }
+  };
+
+
+
     // use effect
     useEffect(()=>{
         fetchJson()
@@ -151,7 +207,7 @@ const AppProvider = ({children}) => {
 
     
     return(
-        <AppContext.Provider value={{orders,setOrders,orderSize,orderStatuses,OnRoute,OnRouteSize,oDeliveredSize,oLoadingSize,oDelayedSize,oInStorageSize,oCancelledSize,oCheckingSize,oUnLoadingSize,vehicleType,totalDistance,oLoading,setOLoading,oInStorage,oChecking,oNew,monthlyShipment,processedData}}>
+        <AppContext.Provider value={{orders,setOrders,orderSize,orderStatuses,OnRoute,OnRouteSize,oDeliveredSize,oLoadingSize,oDelayedSize,oInStorageSize,oCancelledSize,oCheckingSize,oUnLoadingSize,vehicleType,totalDistance,oLoading,setOLoading,oInStorage,oChecking,oNew,monthlyShipment,processedData,sendMessage}}>
             {children}
         </AppContext.Provider>
     )

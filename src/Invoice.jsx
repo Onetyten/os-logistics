@@ -7,11 +7,7 @@ import Truck3 from '../public/Images/TruckProgress3.png'
 import Truck4 from '../public/Images/TruckProgress4.png'
 import Truck5 from '../public/Images/TruckProgress5.png'
 import 'maplibre-gl/dist/maplibre-gl.css'
-const Map = lazy(() => import("@vis.gl/react-maplibre").then(({ default: Map, Source, Layer }) => ({
-  default: Map,
-  Source,
-  Layer,
-})));
+import Map ,{Source,Layer,Marker} from "@vis.gl/react-maplibre";
 const OrderItem = lazy(() => import('./Components/OrderItem'));
 
 
@@ -122,20 +118,36 @@ export default function Invoice() {
         
         
         <div className="w-full rounded-xl flex-1 bg-boxclr p-3">
-        <Suspense fallback={<div>Loading Map...</div>}> {/* Wrap Map with Suspense */}
-            <Map
-              initialViewState={{
-                longitude: 0.1870,
-                latitude: 5.6037,
-                zoom: 1,
-              }}
-              style={{ width: "100%", height: "400px" }}
-              mapStyle="https://demotiles.maplibre.org/style.json"
+        <Map initialViewState={{ longitude: selectedOrder?.origin.longitude || 0.1870, latitude: selectedOrder?.origin.latitude || 5.6037,zoom: 1}} style={{ width: "100%", height: "400px" }} mapStyle="https://demotiles.maplibre.org/style.json">
+        {route && (
+          <Source id="route" type="geojson" data={route}>
+            <Layer id="route-layer" type="line" layout={{ "line-join": "round", "line-cap": "round" }} paint={{ "line-color": "#ff0000", "line-width": 4 }}/>
+          </Source>
+        )}
+        {selectedOrder && (
+          <>
+            <Marker
+              longitude={selectedOrder.origin.longitude}
+              latitude={selectedOrder.origin.latitude}
+              anchor="bottom"
             >
-              {/* ... (route and layer remain the same) */}
-            </Map>
-          </Suspense>
-                
+              <div className="bg-[#1b54fe] text-white p-2 rounded-md text-xs shadow-md">
+                Source
+              </div>
+            </Marker>
+
+            <Marker
+              longitude={selectedOrder.destination.longitude}
+              latitude={selectedOrder.destination.latitude}
+              anchor="bottom"
+            >
+              <div className="bg-[#fc655f] text-white p-2 rounded-md text-xs shadow-md">
+                Destination
+              </div>
+            </Marker>
+          </>
+        )}
+      </Map>
 
         </div>
         
