@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 @import "tailwindcss";
 
+
+
+
 :root {
   font-family:Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -34,6 +37,9 @@
   --color3-50:#fc655f7b;
   --color3-75:#fc655fb3;
 
+}
+div::-webkit-scrollbar {
+  display: none;
 }
 
 .dark-theme{
