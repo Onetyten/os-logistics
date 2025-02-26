@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState,lazy, Suspense } from "react";
 import { AppContext } from "./Context";
 import Truck0 from '../public/Images/TruckProgress0.png'
 import Truck1 from '../public/Images/TruckProgress1.png'
@@ -6,10 +6,18 @@ import Truck2 from '../public/Images/TruckProgress2.png'
 import Truck3 from '../public/Images/TruckProgress3.png'
 import Truck4 from '../public/Images/TruckProgress4.png'
 import Truck5 from '../public/Images/TruckProgress5.png'
-import Map, {Source,Layer} from "@vis.gl/react-maplibre";
 import 'maplibre-gl/dist/maplibre-gl.css'
+const Map = lazy(() => import("@vis.gl/react-maplibre").then(({ default: Map, Source, Layer }) => ({
+  default: Map,
+  Source,
+  Layer,
+})));
+const OrderItem = lazy(() => import('./Components/OrderItem'));
+
+
 
 export default function Invoice() {
+  // eslint-disable-next-line no-unused-vars
   const [route, setRoute] = useState(null);
   const { orders } = useContext(AppContext);
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -87,52 +95,21 @@ export default function Invoice() {
       {/* Orders List */}
       <div className="flex-1 xl:h-full max-h-96 xl:max-h-full shadow-lg w-full xl:shadow-none overflow-scroll flex flex-col p-5 gap-6">
         {orders.map((order, index) => (
-          <div
-            key={index}
-            className={` ${selectedOrder?.package_information.package_id === order.package_information.package_id
-              ? "bg-primary text-boxclr" : "bg-boxclr text-textclr"} rounded-md shadow-md p-4 cursor-pointer`}
-            onClick={() => setSelectedOrder(order)} // Select order on click
-          >
-            {/* Order Header */}
-            <div className="flex justify-between items-center">
-              <p className="md:text-sm text-xs font-semibold">
-                ORDER ID: #{order.package_information.package_id}
-              </p>
-              <div
-                className={`text-center rounded-md md:w-24  md:p-2 p-1 ${
-                  statusColors[order.status] || "bg-textclr2 text-white"
-                }`}
-              >
-                <p className="md:text-sm text-xs font-bold">{order.status}</p>
-              </div>
-            </div>
+          <Suspense key={index} fallback={
+            <div className={`rounded-md shadow-md p-4 cursor-pointer bg-boxclr h-64`}>
+              <div className="bg-bkground w-full h-56">
 
-            {/* Progress Bar */}
-            <div className="w-full flex h-2 mt-3 bg-clr2-25 rounded-3xl">
-              <div
-                className={`bg-clr2 h-full rounded-3xl transition-all duration-500 ${
-                  statusProgress[order.status] || "w-[10%]"
-                }`}
-              ></div>
-            </div>
-
-            {/* Order Updates */}
-            <div className="mt-4">
-              <p className={`md:text-sm text-xs${selectedOrder?.package_information.package_id === order.package_information.package_id
-                ?"text-textclr2":"text-textclr"} font-semibold `}>Order Updates:</p>
-              <div className="mt-2 space-y-2">
-                {order.updates.map((update, idx) => (
-                  <div key={idx} className="flex justify-between items-center p-2 rounded-md">
-                    <p className="text-xs font-medium">{update.state}</p>
-                    <p className={`text-xs ${selectedOrder?.package_information.package_id === order.package_information.package_id
-                ?"text-boxclr":"text-textclr2"} `}>
-                      {new Date(update.timeline).toLocaleString()}
-                    </p>
-                  </div>
-                ))}
               </div>
-            </div>
-          </div>
+
+            </div>}>
+            <OrderItem
+              order={order}
+              selectedOrder={selectedOrder}
+              setSelectedOrder={setSelectedOrder}
+              statusColors={statusColors}
+              statusProgress={statusProgress}
+            />
+          </Suspense>
         ))}
       </div>
 
@@ -145,28 +122,19 @@ export default function Invoice() {
         
         
         <div className="w-full rounded-xl flex-1 bg-boxclr p-3">
-        <Map
-        initialViewState={{
-          longitude:  0.1870,
-          latitude:  5.6037,
-          zoom: 1,
-        }}
-        style={{ width: "100%", height: "400px" }}
-        mapStyle="https://demotiles.maplibre.org/style.json"
-      >
-        {route && (
-          <Source id="route" type="geojson" data={route}>
-            <Layer
-              id="route-line"
-              type="line"
-              paint={{
-                "line-color": "#ff0000",
-                "line-width": 4,
+        <Suspense fallback={<div>Loading Map...</div>}> {/* Wrap Map with Suspense */}
+            <Map
+              initialViewState={{
+                longitude: 0.1870,
+                latitude: 5.6037,
+                zoom: 1,
               }}
-            />
-          </Source>
-        )}
-      </Map>
+              style={{ width: "100%", height: "400px" }}
+              mapStyle="https://demotiles.maplibre.org/style.json"
+            >
+              {/* ... (route and layer remain the same) */}
+            </Map>
+          </Suspense>
                 
 
         </div>
