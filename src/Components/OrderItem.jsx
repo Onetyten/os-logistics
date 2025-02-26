@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'; // Import PropTypes
 const OrderItem = ({ order, selectedOrder, setSelectedOrder, statusColors, statusProgress }) => {
   return (
     <div
-      className={` ${selectedOrder?.package_information.package_id === order.package_information.package_id ? "bg-primary text-boxclr" : "bg-boxclrtext-textclr"} rounded-md shadow-md p-4 cursor-pointer`} onClick={() => setSelectedOrder(order)}>
+      className={` ${selectedOrder?.package_information.package_id === order.package_information.package_id ? "bg-primary text-boxclr" : "bg-boxclr text-textclr"} rounded-md shadow-md p-4 cursor-pointer`} onClick={() => setSelectedOrder(order)}>
       {/* Order Header */}
       <div className="flex justify-between items-center">
         <p className="md:text-sm text-xs font-semibold">
