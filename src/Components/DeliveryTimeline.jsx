@@ -13,7 +13,7 @@ export default function DeliveryTimeline() {
             <YAxis  tick={{ fontSize: "10px" }}/>
             <Tooltip />
             <Legend/>
-            <Bar dataKey="daysDifference" stackId="a" fill="#1b54fe" name="Shipping Duration" />
+            <Bar dataKey="daysDifference" stackId="a" fill="#1b54fe" name="No of shipment per date" />
         </BarChart>
         </ResponsiveContainer>
     </div>

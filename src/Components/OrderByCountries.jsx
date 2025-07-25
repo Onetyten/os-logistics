@@ -1,18 +1,13 @@
-import { useState, useEffect } from 'react';
-import NewOrders from "./Shipping";
-import Preparing from "./Preparing";
-import Shipping from "./Shipping";
+import { useState } from 'react';
+import OrderList from './orderList';
+import { useContext } from "react"
+import { AppContext } from "../Context"
 
 export default function OrderByCountries() {
-    // Load saved index from localStorage, default to 1
-    const [countriesTabIndex, setCountriesTabIndex] = useState(() => {
-        return parseInt(localStorage.getItem("countriesTabIndex")) || 1;
-    });
-
-    // Update localStorage whenever the index changes
-    useEffect(() => {
-        localStorage.setItem("countriesTabIndex", countriesTabIndex);
-    }, [countriesTabIndex]);
+    const {oLoading,oNew,OnRoute,oInStorage,oChecking} = useContext(AppContext)
+    const shippingOrders = [...OnRoute, ...oInStorage, ...oChecking];
+    
+    const [countriesTabIndex, setCountriesTabIndex] = useState(1)
 
     return (
         <div className="bg-boxclr rounded-md row-span-2 w-full h-96 overflow-y-scroll col-span-4 p-3 xl:col-span-3 shadow-md">
@@ -33,9 +28,12 @@ export default function OrderByCountries() {
             </div>
 
             <div>
-                {countriesTabIndex === 1 && <NewOrders />}
-                {countriesTabIndex === 2 && <Preparing />}
-                {countriesTabIndex === 3 && <Shipping />}
+                {/* new */}
+                {countriesTabIndex === 1 && <OrderList Orders = {oNew}/> }
+                {/* loading */}
+                {countriesTabIndex === 2 && <OrderList Orders = {oLoading} name /> }
+                {/* shipping */}
+                {countriesTabIndex === 3 && <OrderList Orders = {shippingOrders} />}
             </div>
         </div>
     );
