@@ -14,15 +14,15 @@ export default function OrderByCountries() {
             <p className="text-sm font-semibold">Orders by countries</p>
             <div className="w-full shadow-md text-sm flex my-4 justify-around">
                 <div onClick={() => setCountriesTabIndex(1)} 
-                     className={`${countriesTabIndex === 1 ? "bg-boxclr" : "bg-bkground"} py-3 text-center w-full h-full`}>
+                     className={`${countriesTabIndex === 1 ? "bg-boxclr" : "bg-bkground"} py-3 cursor-pointer text-center w-full h-full`}>
                     <p>New</p>
                 </div>
                 <div onClick={() => setCountriesTabIndex(2)} 
-                     className={`${countriesTabIndex === 2 ? "bg-boxclr" : "bg-bkground"} py-3 text-center w-full h-full`}>
+                     className={`${countriesTabIndex === 2 ? "bg-boxclr" : "bg-bkground"} py-3 cursor-pointer text-center w-full h-full`}>
                     <p>Preparing</p>
                 </div>
                 <div onClick={() => setCountriesTabIndex(3)} 
-                     className={`${countriesTabIndex === 3 ? "bg-boxclr" : "bg-bkground"} py-3 text-center w-full h-full`}>
+                     className={`${countriesTabIndex === 3 ? "bg-boxclr" : "bg-bkground"} py-3 cursor-pointer text-center w-full h-full`}>
                     <p>Shipping</p>
                 </div>
             </div>

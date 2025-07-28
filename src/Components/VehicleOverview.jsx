@@ -6,7 +6,7 @@ export default function VehicleOverview() {
     const {OnRouteSize,orderSize,oDeliveredSize,oLoadingSize,oDelayedSize,oInStorageSize,oCancelledSize,oCheckingSize,oUnLoadingSize,vehicleType,} = useContext(AppContext)
 
   return (
-    <div className={`bg-boxclr mt-10 md:mt-0 rounded-md col-span-4 w-full min-h-32 p-3 row-span-2 shadow-md`}>
+    <div className={`bg-boxclr rounded-md col-span-4 w-full min-h-32 p-3 row-span-2 shadow-md`}>
         <p className="text-sm font-semibold">Vehicles Overview</p>
         <div className="flex mt-4 flex-wrap md:flex-nowrap justify-around w-full rounded-md overflow-hidden ">
             <OverviewItem item="Checking in"  color={"bg-blue-600/10"} percentage={Math.floor(((oCheckingSize)/orderSize)*100)} />

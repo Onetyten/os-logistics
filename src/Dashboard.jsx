@@ -13,12 +13,12 @@ const TotalDistanceCard = lazy(()=>import("./Components/TotalDistanceCard"))
 export default function Dashboard() {
 
   return (
-    <div>
-      <div className="px-0 2xl:px-[10%] xl:px-[5%] my-5">
+    <div className="flex flex-col gap-6">
+      {/* <div className="">
         <p className="md:text-lg font-semibold text-sm">DashBoard</p>
-      </div>
+      </div> */}
 
-      <div className="xl:grid-cols-8 2xl:px-[10%] xl:px-[5%] auto-cols-fr auto-rows-fr gap-3 px-0 grid-rows-3 flex flex-col md:grid w-full mb-32 md:mb-0">
+      <div className="xl:grid-cols-8 auto-cols-fr auto-rows-fr gap-4 grid-rows-3 flex flex-col md:grid w-full mb-32 md:mb-0">
         
         {/* On route vehicles */}
         <Suspense fallback={<div className="bg-boxclr text-sm flex flex-col gap-2 rounded-md h-44 col-span-2 p-3 shadow-md">
@@ -54,21 +54,21 @@ export default function Dashboard() {
 
 
         {/* Lazy-loaded components wrapped in Suspense */}
-        <Suspense fallback={<div className={`bg-boxclr h-96 mt-10 md:mt-0 rounded-md col-span-4 w-full min-h-32 p-6 flex gap-5 flex-col row-span-2 shadow-md`}>
+        <Suspense fallback={<div className={`bg-boxclr h-96 rounded-md col-span-4 w-full min-h-32 p-6 flex gap-5 flex-col row-span-2 shadow-md`}>
           <div className="bg-bkground w-full h-24"></div>
           <div className="bg-bkground w-full flex-1"></div>
           </div>}>
           <VehicleOverview />
         </Suspense>
 
-        <Suspense fallback={<div className={`bg-boxclr h-96 mt-10 md:mt-0 rounded-md col-span-4 w-full min-h-32 p-6 flex gap-5 flex-col row-span-2 shadow-md`}>
+        <Suspense fallback={<div className={`bg-boxclr h-96  rounded-md col-span-4 w-full min-h-32 p-6 flex gap-5 flex-col row-span-2 shadow-md`}>
           <div className="bg-bkground w-[30%] h-12"></div>
           <div className="bg-bkground w-full flex-1"></div>
           </div>}>
           <MonthlyShipment />
         </Suspense>
 
-        <Suspense fallback={<div className={`bg-boxclr h-96 mt-10 md:mt-0 rounded-md col-span-3 w-full min-h-32 p-6 flex gap-5 flex-col row-span-2 shadow-md`}>
+        <Suspense fallback={<div className={`bg-boxclr h-96 rounded-md col-span-3 w-full min-h-32 p-6 flex gap-5 flex-col row-span-2 shadow-md`}>
           <div className="bg-bkground w-[30%] h-14"></div>
           <div className="bg-bkground w-full flex-1"></div>
           </div>}>
@@ -76,7 +76,7 @@ export default function Dashboard() {
         </Suspense>
 
 
-        <Suspense fallback={<div className={`bg-boxclr h-96 mt-10 md:mt-0 rounded-md col-span-2 w-full min-h-32 p-6 flex gap-5 justify-around flex-col row-span-2 shadow-md`}>
+        <Suspense fallback={<div className={`bg-boxclr h-96 rounded-md col-span-2 w-full min-h-32 p-6 flex gap-5 justify-around flex-col row-span-2 shadow-md`}>
           <div className="bg-bkground w-[30%] h-14"></div>
           <div className="bg-bkground w-full h-14"></div>
           </div>}>

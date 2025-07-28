@@ -8,7 +8,7 @@ export default function MonthlyShipment() {
     const {monthlyShipment} = useContext(AppContext)
     const cardinal = curveCardinal.tension(0.2);
   return (
-    <div className={`bg-boxclr mt-10 md:mt-0 rounded-md col-span-4 w-full h-96 p-3 row-span-2 shadow-md`}>
+    <div className={`bg-boxclr rounded-md col-span-4 w-full h-96 p-3 row-span-2 shadow-md`}>
         <p className="text-sm font-semibold mb-8">Monthly shipment</p>
 
         <ResponsiveContainer width="100%" height="90%">

@@ -89,7 +89,7 @@ export default function Invoice() {
   return (
     <div className="w-full xl:h-screen mb-8 flex flex-col xl:flex-row items-center">
       {/* Orders List */}
-      <div className="flex-1 xl:h-full max-h-96 xl:max-h-full shadow-lg w-full xl:shadow-none overflow-scroll flex flex-col p-5 gap-6">
+      <div className="flex-1 xl:h-full max-h-96 xl:max-h-full shadow-lg w-full xl:shadow-none overflow-scroll flex flex-col gap-6">
         {orders.map((order, index) => (
           <Suspense key={index} fallback={
             <div className={`rounded-md shadow-md p-4 cursor-pointer bg-boxclr h-64`}>

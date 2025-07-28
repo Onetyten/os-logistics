@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { faBell, faMoon, faSun, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { toast } from 'react-toastify';
 
 export default function SearchBar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -28,8 +29,8 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="w-full bg-boxclr h-12 shadow-md flex items-center rounded-md">
-      <div className=" h-full flex items-center justify-center px-2 ">
+    <div className="w-full bg-boxclr h-12 shadow-md flex items-center rounded-md p-2">
+      <div className=" h-full flex items-center cursor-pointer justify-center px-2 ">
         <FontAwesomeIcon icon={faSearch} className="text-textclr" />
       </div>
 
@@ -45,7 +46,7 @@ export default function SearchBar() {
           className="text-textclr2 cursor-pointer"
           onClick={toggleTheme}
         />
-        <FontAwesomeIcon icon={faBell} className="text-textclr2" />
+        <FontAwesomeIcon icon={faBell} className="text-textclr2 cursor-pointer" onClick={()=>{toast("No new notifications")}} />
       </div>
     </div>
   );
