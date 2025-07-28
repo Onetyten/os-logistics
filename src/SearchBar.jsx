@@ -1,31 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { faBell, faMoon, faSun, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleDarkMode } from '../utils/state/darkMode/darkModeSlice';
 
 export default function SearchBar() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const dispatch = useDispatch()
+  const darkmode = useSelector((state)=>state.darkmode.darkmode)
 
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'dark') {
-      setIsDarkMode(true);
+  useEffect(()=>{
+    if (darkmode==true){
       document.documentElement.classList.add('dark-theme');
     }
-  }, []);
+    else
+    {
+      document.documentElement.classList.remove('dark-theme');
+    }
+   },[darkmode])
+
+
 
   const toggleTheme = () => {
-    setIsDarkMode((prevMode) => {
-      const newMode = !prevMode;
-      if (newMode) {
-        document.documentElement.classList.add('dark-theme');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark-theme');
-        localStorage.setItem('theme', 'light');
-      }
-      return newMode;
-    });
+    dispatch(toggleDarkMode())
   };
 
   return (
@@ -42,7 +39,7 @@ export default function SearchBar() {
 
       <div className="h-full gap-4 md:gap-7 flex items-center justify-center px-3 md:px-5 ">
         <FontAwesomeIcon
-          icon={isDarkMode ? faSun : faMoon}
+          icon={darkmode ? faSun : faMoon}
           className="text-textclr2 cursor-pointer"
           onClick={toggleTheme}
         />

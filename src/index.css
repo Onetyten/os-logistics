@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 
@@ -78,8 +79,8 @@ div::-webkit-scrollbar {
   --color-clr3-25: var(--color3-25);
   --color-clr3-50: var(--color3-50);
   --color-clr3-75: var(--color3-75);
-
   --font-ibm:  "Orbitron", serif;
+  --font-noto: "Noto Sans Display", sans-serif;
 
 }
 

@@ -146,59 +146,6 @@ const AppProvider = ({children}) => {
     },[OnRoute,oDelivered,oLoading,oDelayed,oInStorage,oCancelled,oChecking,oUnLoading])
 
 
-// Initialize WebSocket
-  useEffect(() => {
-    const connectWebSocket = () => {
-    ws.current = new WebSocket("wss://echo.websocket.events");
-
-      ws.current.onopen = () => {
-        console.log("WebSocket connected");
-      };
-
-      ws.current.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          if (data.type === "new_order") {
-            setOrders((prevOrders) => [...prevOrders, data.order]);
-          }
-          if (data.type === "update_order") {
-            setOrders((prevOrders) =>
-              prevOrders.map((order) => (order.id === data.order.id ? data.order : order))
-            );
-          }
-        } catch (error) {
-          console.log("Error parsing WebSocket message:", error);
-        }
-      };
-
-      ws.current.onclose = () => {
-        console.log("WebSocket disconnected. Reconnecting...");
-        setTimeout(connectWebSocket, 5000); // Reconnect after 5 seconds
-      };
-
-      ws.current.onerror = (error) => {
-        console.log("WebSocket error:", error);
-        ws.current.close();
-      };
-    };
-
-    connectWebSocket();
-
-    return () => {
-      if (ws.current) {
-        ws.current.close();
-      }
-    };
-  }, []);
-
-  // Function to send messagesthrough WebSocket
-  const sendMessage = (message) => {
-    if (ws.current && ws.current.readyState === WebSocket.OPEN) {
-      ws.current.send(JSON.stringify(message));
-    }
-  };
-
-
 
     // use effect
     useEffect(()=>{
@@ -208,7 +155,7 @@ const AppProvider = ({children}) => {
 
     
     return(
-        <AppContext.Provider value={{orders,setOrders,orderSize,orderStatuses,OnRoute,OnRouteSize,oDeliveredSize,oLoadingSize,oDelayedSize,oInStorageSize,oCancelledSize,oCheckingSize,oUnLoadingSize,vehicleType,totalDistance,oLoading,setOLoading,oInStorage,oChecking,oNew,monthlyShipment,processedData,sendMessage}}>
+        <AppContext.Provider value={{orders,setOrders,orderSize,orderStatuses,OnRoute,OnRouteSize,oDeliveredSize,oLoadingSize,oDelayedSize,oInStorageSize,oCancelledSize,oCheckingSize,oUnLoadingSize,vehicleType,totalDistance,oLoading,setOLoading,oInStorage,oChecking,oNew,monthlyShipment,processedData}}>
             {children}
         </AppContext.Provider>
     )

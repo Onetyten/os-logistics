@@ -3,8 +3,19 @@ import { faHome, faTruck } from "@fortawesome/free-solid-svg-icons";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
 import { NavLink as Link } from "react-router";
 import { useState, useEffect } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { fetchShipment } from "../utils/state/shipmentSlice/shipmentSlice";
 
 export default function Sidebar() {
+  const dispatch = useDispatch()
+  const {shipment} = useSelector((state) => state.shipment)
+  
+  useEffect(()=>{
+    dispatch(fetchShipment())
+    console.log("Shipment:",shipment)
+  },[dispatch])
+
+
   // Load saved index from localStorage, default to 1
   const [index, setIndex] = useState(() => {
     return parseInt(localStorage.getItem("sidebarIndex")) || 1;
@@ -14,6 +25,7 @@ export default function Sidebar() {
   useEffect(() => {
     localStorage.setItem("sidebarIndex", index);
   }, [index]);
+  
 
   return (
     <div className="bg-boxclr z-20 md:w-52 bottom-0 left-0 shadow-md md:p-6 fixed md:relative w-full h-16  md:h-screen flex gap-10 flex-row md:flex-col justify-start">

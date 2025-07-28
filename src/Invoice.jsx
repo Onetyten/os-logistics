@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState,lazy, Suspense } from "react";
 import { AppContext } from "./Context";
-import Truck0 from '../public/Images/TruckProgress0.png'
-import Truck1 from '../public/Images/TruckProgress1.png'
-import Truck2 from '../public/Images/TruckProgress2.png'
-import Truck3 from '../public/Images/TruckProgress3.png'
-import Truck4 from '../public/Images/TruckProgress4.png'
-import Truck5 from '../public/Images/TruckProgress5.png'
+import Truck0 from '/Images/TruckProgress0.png'
+import Truck1 from '/Images/TruckProgress1.png'
+import Truck2 from '/Images/TruckProgress2.png'
+import Truck3 from '/Images/TruckProgress3.png'
+import Truck4 from '/Images/TruckProgress4.png'
+import Truck5 from '/Images/TruckProgress5.png'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import Map ,{Source,Layer,Marker} from "@vis.gl/react-maplibre";
 const OrderItem = lazy(() => import('./Components/OrderItem'));
@@ -110,7 +110,7 @@ export default function Invoice() {
       </div>
 
       {/* Selected Order Details */}
-      <div className="bg-bkground overflow-scroll mt-8 md:text-sm text-xs p-4 gap-3 shadow-md flex-1 w-full flex-col h-full flex items-center justify-center">
+      <div className="bg-bkground overflow-scroll md:text-sm text-xs px-4 gap-3 shadow-md flex-1 w-full flex-col h-full flex items-center justify-center">
         <div className="w-full">
          <p className="text-sm font-semibold">ORDER ID : <span className="font-bold">#{selectedOrder?.package_information?.package_id}</span> </p>
         </div>
@@ -158,16 +158,16 @@ export default function Invoice() {
         <div className="w-full flex-1 bg-boxclr">
 
           <div className="w-full grid grid-cols-3 shadow-md text-sm">
-              <div  onClick={() => setInfoTabIndex(1)} className={`${InfoTabIndex == 1 ? "bg-boxclr" : "bg-bkground"} flex items-center justify-center py-3 text-center w-full h-full`} >
+              <div  onClick={() => setInfoTabIndex(1)} className={`${InfoTabIndex == 1 ? "bg-boxclr" : "bg-bkground"} cursor-pointer flex items-center justify-center py-3 text-center w-full h-full`} >
                 <p>Order details</p>
               </div>
-              <div  onClick={() => setInfoTabIndex(2)} className={`${InfoTabIndex == 2 ? "bg-boxclr" : "bg-bkground"} flex items-center justify-center py-3 text-center w-full h-full`}
+              <div  onClick={() => setInfoTabIndex(2)} className={`${InfoTabIndex == 2 ? "bg-boxclr" : "bg-bkground"} cursor-pointer  flex items-center justify-center py-3 text-center w-full h-full`}
               >
                 <p>Vehicle Information</p>
               </div>
               <div  
                 onClick={() => setInfoTabIndex(3)} 
-                className={`${InfoTabIndex == 3 ? "bg-boxclr" : "bg-bkground"} flex items-center justify-center py-3 text-center w-full h-full`}
+                className={`${InfoTabIndex == 3 ? "bg-boxclr" : "bg-bkground"} cursor-pointer  flex items-center justify-center py-3 text-center w-full h-full`}
               >
                 <p>Customer Information</p>
               </div>

@@ -1,57 +1,94 @@
 [
-    {
-      "id": "ORDER001",
+    
+  {
+    "receipt_title": "Shipment Receipt",
+    "receipt_id": "RCT-SHP-20250110-98347",
+    "generated_on": "2025-01-10",
+
+    "client_information": {
+      "customer_id": "CLT-JD-893274",
+      "customer_name": "Johnathan Doe",
+      "contact_email": "john.doe@example.com",
+      "contact_phone": "+234-801-234-5678",
+      "billing_address": "23, Marina Street, Victoria Island, Lagos, Nigeria"
+    },
+
+    "sender_information": {
+      "sender_id": "SND-JPN-457381",
+      "name": "Satoshi Nakamura",
+      "address": "1-1 Chiyoda, Tokyo, Japan",
+      "email": "satoshi.nakamura@nipponmail.jp",
+      "phone": "+81-90-1234-5678"
+    },
+
+    "receiver_information": {
+      "receiver_id": "RCV-NG-892134",
+      "name": "Johnathan Doe",
+      "address": "23, Marina Street, Victoria Island, Lagos, Nigeria",
+      "email": "john.doe@example.com",
+      "phone": "+234-801-234-5678"
+    },
+
+    "shipment_details": {
+      "shipment_id": "PKG-CTF-GBL-345",
+      "tracking_code": "TRK-GLX-20250105-56621",
       "status": "Delivered",
       "origin": {
         "city": "Tokyo",
         "state": "Kanto",
-        "country": "Japan",
-        "latitude": 35.6895,
-        "longitude": 139.6917
+        "country": "Japan"
       },
       "destination": {
         "city": "Lagos",
         "state": "Lagos",
-        "country": "Nigeria",
-        "latitude": 6.4550,
-        "longitude": 3.3947
+        "country": "Nigeria"
       },
-      "current_location": {
-        "latitude": 6.4550,
-        "longitude": 3.3947
-      },
+      "distance_km": 8000,
       "eta": "2025-01-10",
-      "last_updated": "2025-01-09T10:00:00Z",
-      "updates": [
-        {"timeline": "2025-01-05T08:00:00Z", "state": "Loaded"},
-        {"timeline": "2025-01-07T12:00:00Z", "state": "In Transit"},
-        {"timeline": "2025-01-09T09:00:00Z", "state": "Arrived at Destination"},
-        {"timeline": "2025-01-09T10:00:00Z", "state": "Delivered"}
-      ],
-      "state_of_transit": "Delivered",
-      "shipment_statistics": {
-        "shipment_per_date": "2025-01-05",
-        "estimated_date_left": "2025-01-05"
-      },
-      "vehicle_information": {
-        "vehicle_number": "ABC123",
-        "vehicle_type": "Truck"
-      },
-      "customer_information": {
-        "customer_id": "CUST001",
-        "customer_name": "John Doe"
-      },
-      "package_information": {
-        "package_id": "PKG001",
-        "weight": 100,
-        "dimensions": {
-          "length": 100,
-          "width": 50,
-          "height": 50
-        }
-      },
-      "distance": 8000
+      "delivered_on": "2025-01-09T10:00:00Z",
+      "vehicle": {
+        "vehicle_id": "VHC-TK-34582",
+        "vehicle_number": "ABC-123-NG",
+        "vehicle_type": "18-Wheeler Truck",
+        "driver_id": "DRV-NG-78342",
+        "driver_name": "Emeka Okafor"
+      }
     },
+
+    "package_information": {
+      "package_id": "PKG-IRB-Y0140",
+      "package_name": "iRobot Roomba Robot Vacuum & Mop Combo (Y0140) Alexa",
+      "weight_kg": 100,
+      "dimensions_cm": {
+        "length": 100,
+        "width": 50,
+        "height": 50
+      },
+      "package_type": "Box",
+      "priority": "Standard"
+    },
+
+    "tracking_updates": [
+      {"update_id": "UPD-98311", "date_time": "2025-01-05T08:00:00Z", "event": "Loaded"},
+      {"update_id": "UPD-98312", "date_time": "2025-01-07T12:00:00Z", "event": "In Transit"},
+      {"update_id": "UPD-98313", "date_time": "2025-01-09T09:00:00Z", "event": "Arrived at Destination"},
+      {"update_id": "UPD-98314", "date_time": "2025-01-09T10:00:00Z", "event": "Delivered"}
+    ],
+
+    "payment_information": {
+      "invoice_id": "INV-GLF-20250110-99832",
+      "base_shipping_fee": 150.00,
+      "insurance_fee": 20.00,
+      "taxes": 10.00,
+      "total_cost": 180.00,
+      "currency": "USD",
+      "payment_method": "Credit Card (VISA)"
+    },
+
+    "notes": "Thank you for shipping with Global Freight Logistics. For support, contact support@globallogistics.com or call +234-802-000-1111."
+  },
+
+    
       {
       "id": "ORDER002",
       "status": "In Transit",
