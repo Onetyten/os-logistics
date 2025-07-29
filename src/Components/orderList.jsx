@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 export default function OrderList(props) {
   const {Orders } = props 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full h-full flex flex-col mb-8">
         <div>
             {Orders.map((item,index)=>{
                 return(

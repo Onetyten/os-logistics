@@ -3,16 +3,14 @@ import { faHome, faTruck } from "@fortawesome/free-solid-svg-icons";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
 import { NavLink as Link } from "react-router";
 import { useState, useEffect } from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchShipment } from "../utils/state/shipmentSlice/shipmentSlice";
 
 export default function Sidebar() {
   const dispatch = useDispatch()
-  const {shipment} = useSelector((state) => state.shipment)
   
   useEffect(()=>{
     dispatch(fetchShipment())
-    console.log("Shipment:",shipment)
   },[dispatch])
 
 

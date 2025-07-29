@@ -10,9 +10,9 @@ export default function OrderByCountries() {
     const [countriesTabIndex, setCountriesTabIndex] = useState(1)
 
     return (
-        <div className="bg-boxclr rounded-md row-span-2 w-full h-96 overflow-y-scroll col-span-4 p-3 xl:col-span-3 shadow-md">
+        <div className="bg-boxclr rounded-md row-span-2 w-full h-96 overflow-hidden relative col-span-4 p-3 xl:col-span-3 shadow-md">
             <p className="text-sm font-semibold">Orders by countries</p>
-            <div className="w-full shadow-md text-sm flex my-4 justify-around">
+            <div className=" shadow-md text-sm sticky top-0 flex my-4 justify-around">
                 <div onClick={() => setCountriesTabIndex(1)} 
                      className={`${countriesTabIndex === 1 ? "bg-boxclr" : "bg-bkground"} py-3 cursor-pointer text-center w-full h-full`}>
                     <p>New</p>
@@ -27,7 +27,7 @@ export default function OrderByCountries() {
                 </div>
             </div>
 
-            <div>
+            <div className='overflow-y-scroll h-full'>
                 {/* new */}
                 {countriesTabIndex === 1 && <OrderList Orders = {oNew}/> }
                 {/* loading */}
