@@ -2,27 +2,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faTruck } from "@fortawesome/free-solid-svg-icons";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
 import { NavLink as Link } from "react-router";
-import { useState, useEffect } from "react";
+import {useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchShipment } from "../utils/state/shipmentSlice/shipmentSlice";
 
 export default function Sidebar() {
   const dispatch = useDispatch()
-  
   useEffect(()=>{
     dispatch(fetchShipment())
   },[dispatch])
-
-
-  // Load saved index from localStorage, default to 1
-  const [index, setIndex] = useState(() => {
-    return parseInt(localStorage.getItem("sidebarIndex")) || 1;
-  });
-
-  // Update localStorage whenever index changes
-  useEffect(() => {
-    localStorage.setItem("sidebarIndex", index);
-  }, [index]);
+  
   
 
   return (
@@ -30,23 +19,21 @@ export default function Sidebar() {
       <p className="text-primary text-xl 2xl:text-3xl font-ibm font-bold hidden md:block">OS</p>
       <div className="flex md:gap-4 md:flex-col flex-row md:flex-start justify-around items-center md:items-start w-full">
 
-        <Link to="/" onClick={() => setIndex(1)} 
-          className={`md:text-sm ${index === 1 ? "text-primary" : "text-textclr"} gap-3 justify-start md:flex-row text-xs flex-col items-center flex`}>
-          <FontAwesomeIcon icon={faHome} />
-          <p>Dashboard</p>
-        </Link>
+        
+      <Link to="/" end className={({ isActive }) => `md:text-sm gap-3 justify-start md:flex-row text-xs flex-col items-center flex ${isActive ? "text-primary" :"text-textclr"}`} >
+        <FontAwesomeIcon icon={faHome} />
+        <p>Dashboard</p>
+      </Link>
 
-        <Link to="invoice" onClick={() => setIndex(2)} 
-          className={`md:text-sm ${index === 2 ? "text-primary" : "text-textclr"} gap-3 justify-start md:flex-row text-xs flex-col items-center flex`}>
-          <FontAwesomeIcon icon={faTruck} />
-          <p>Invoice</p>
-        </Link>
+      <Link to="/invoice" className={({ isActive }) =>`md:text-sm gap-3 justify-start md:flex-row text-xs flex-col items-center flex ${isActive ? "text-primary" :"text-textclr"}`}>
+        <FontAwesomeIcon icon={faTruck} />
+        <p>Invoice</p>
+      </Link>
 
-        <Link to="map" onClick={() => setIndex(3)} 
-          className={`md:text-sm ${index === 3 ? "text-primary" : "text-textclr"} gap-3 justify-start md:flex-row text-xs flex-col items-center flex`}>
-          <FontAwesomeIcon icon={faCompass} />
-          <p>Map</p>
-        </Link>
+      <Link to="/map" className={({ isActive }) =>`md:tm gap-3 justify-start md:flex-row text-xs flex-col items-center flex ${isActive ? "text-primary" :"text-textclr"}`}>
+            <FontAwesomeIcon icon={faCompass} />
+        <p>Map</p>
+      </Link>
 
       </div>
     </div>

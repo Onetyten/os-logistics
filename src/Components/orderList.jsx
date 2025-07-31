@@ -3,8 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheckCircle} from "@fortawesome/free-solid-svg-icons"
 import PropTypes from "prop-types"
 import { FixedSizeList as List } from "react-window"
+import { NavLink as Link } from "react-router";
+import { useDispatch } from "react-redux";
+import { setSelectedOrder } from "../../utils/state/selectedOrder/selectedOrderSlice";
+
+
+
+
 
 export default function OrderList({Orders }) {
+    const dispatch = useDispatch()
     const itemHeight = 100
   return (
     <div className="w-full h-full flex flex-col mb-8">
@@ -12,7 +20,7 @@ export default function OrderList({Orders }) {
             {({index,style})=>{
                 const item = Orders[index]
                 return(
-                <div key={index} style={style} className="my-3  p-3 flex justify-between gap-4">
+                <Link to="invoice" key={index} style={style} onClick={()=>{dispatch(setSelectedOrder(item))}} className="my-3 hover:bg-gray-300/20 cursor-pointer p-3 flex justify-between gap-4">
 
                     <div className="flex items-start gap-3 text-sm flex-1 text-clr2">
                         <div className="flex text-sm gap-2 text-clr2 items-center">
@@ -36,7 +44,7 @@ export default function OrderList({Orders }) {
                         </div>
                     </div>
 
-                </div>
+                </Link>
                 )
             }}
         </List>

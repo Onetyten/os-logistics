@@ -1,10 +1,12 @@
-import { useEffect, useState,lazy, Suspense } from "react";
+import { useEffect, useState,lazy, Suspense,useRef } from "react";
 import 'maplibre-gl/dist/maplibre-gl.css'
 
 import { useShipmentAnalysis } from "./hooks/shipmentAnalysis";
 import OrderMap from "./Components/OrderMap";
 import InvoiceDetails from "./Components/invoiceDetails";
 import OrderItemLoader from "./Components/lazyLoaded/OrderItemLoader";
+import {useSelector } from "react-redux";
+// import { setSelectedOrder } from "../utils/state/selectedOrder/selectedOrderSlice";
 const OrderItem = lazy(() => import('./Components/OrderItem'));
 
 
@@ -12,7 +14,8 @@ const OrderItem = lazy(() => import('./Components/OrderItem'));
 export default function Invoice() {
   const [route, setRoute] = useState(null);
   const {shipmentData} = useShipmentAnalysis()
-  const [selectedOrder, setSelectedOrder] = useState(shipmentData[0]);
+  const containerRef = useRef();
+  const selectedOrder = useSelector((state)=>state.selectedOrder.selectedOrder)
 
   useEffect(() => {
     if (!selectedOrder || !selectedOrder.origin || !selectedOrder.destination) {
@@ -33,17 +36,19 @@ export default function Invoice() {
     setRoute(setMapRoute);
   }, [selectedOrder]);
   
-  
+
 
   return (
-    <div className="w-full xl:h-screen mb-8 flex flex-col xl:flex-row items-center">
+    <div className="w-full xl:h-screen mb-8 flex gap-10 xl:gap-0 flex-col xl:flex-row items-center">
       {/* left side */}
       {/* Orders List */}
-      <div className="flex-1 xl:h-full max-h-96 xl:max-h-full shadow-lg w-full xl:shadow-none overflow-scroll flex flex-col gap-4">
-        
+      <div ref={containerRef} className="flex-1 xl:h-full max-h-[500px] xl:max-h-full shadow-lg w-full xl:shadow-none overflow-scroll flex flex-col gap-4">
         {shipmentData.map((order, index) => (
-          <Suspense key={index} fallback={<OrderItemLoader/>}>
-            <OrderItem order={order} selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder}/>
+          <Suspense key={index} fallback={<OrderItemLoader />}>
+            <OrderItem
+              order={order}
+              selectedOrder={selectedOrder}
+            />
           </Suspense>
         ))}
       </div>
@@ -57,7 +62,7 @@ export default function Invoice() {
         <OrderMap route={route} selectedOrder={selectedOrder}/>
         
         <div className="w-full">
-         <p className="text-sm font-bold">Main info</p>
+         <p className="text-sm font-bold">Details</p>
         </div>
         <InvoiceDetails selectedOrder={selectedOrder}/>
         

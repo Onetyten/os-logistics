@@ -22,7 +22,7 @@ export default function MapView() {
   const center = [20, 0];
 
   return (
-    <div className="w-full h-[88vh] flex justify-center overflow-hidden items-center">
+    <div className="w-full z-10 h-[88vh] flex justify-center overflow-hidden items-center">
       <Suspense fallback={<div className="bg-textclr2 h-full w-full"></div>}>
           <MapContainer center={center} zoom={5} minZoom={4}  style={{ height: "100%", width: "100%" }}>
             {/* simplest */}

@@ -1,41 +1,93 @@
-import Map ,{Source,Layer,Marker} from "@vis.gl/react-maplibre";
 import PropTypes from "prop-types";
+import { useEffect, useMemo, useState } from "react";
+import { MapContainer,TileLayer,Polyline,Marker,Popup, useMap } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
-export default function OrderMap({route,selectedOrder}) {
+
+const originIcon = new L.Icon({
+  iconUrl: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+});
+
+const destinationIcon = new L.Icon({
+  iconUrl: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+});
+
+export default function OrderMap({selectedOrder}) {
+
+    
+    const origin = useMemo(()=>{return {lat:selectedOrder?.origin.latitude,lng:selectedOrder?.origin.longitude} },[selectedOrder]) 
+    const destination =  useMemo(()=>{return {lat:selectedOrder?.destination.latitude,lng:selectedOrder?.destination.longitude} },[selectedOrder]) 
+    const [routeCoords,setRouteCoords] = useState([]);
+
+    
+    useEffect(()=>{
+
+      if (!origin || !destination) return
+      setRouteCoords([origin, destination])
+    },[origin, destination])
+
+    function FitBounds({ positions }) {
+      const map = useMap();
+
+      useEffect(() => {
+        if (positions.length > 0) {
+          map.fitBounds(positions);
+        }
+      }, [positions, map]);
+
+      return null;
+    }
+
+    FitBounds.propTypes = {
+    positions: PropTypes.arrayOf(
+      PropTypes.arrayOf(PropTypes.number)
+    ).isRequired
+  };
+
+
+
+
+
   return (
-   <div className="w-full rounded-xl shadow-md overflow-hidden min-h-96 flex-1 bg-boxclr">
-          <Map initialViewState={{ longitude: selectedOrder?.origin.longitude || 0.1870, latitude: selectedOrder?.origin.latitude || 5.6037,zoom: 1}} style={{ width: "100%", height: "100%" }} mapStyle="https://demotiles.maplibre.org/style.json">
-              {route && (
-                <Source id="route" type="geojson" data={route}>
-                  <Layer id="route-layer" type="line" layout={{ "line-join": "round", "line-cap": "round" }} paint={{ "line-color": "#ff0000", "line-width": 4 }}/>
-                </Source>
-              )}
-              {selectedOrder && (
-                <>
-                  <Marker
-                    longitude={selectedOrder.origin.longitude}
-                    latitude={selectedOrder.origin.latitude}
-                    anchor="bottom"
-                  >
-                    <div className="bg-[#1b54fe] text-white p-2 rounded-md text-xs shadow-md">
-                      Source
-                    </div>
-                  </Marker>
+   <div className="w-full z-0 rounded-xl shadow-md overflow-hidden min-h-96 flex-1 bg-boxclr">
+    <MapContainer center={origin} zoom={6} scrollWheelZoom={true} style={{ height: "100%", width: "100%" }}>
+      <TileLayer
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
+        attribution="Tiles &copy; Esri"
+        maxZoom={19}
+      />
+      
+     {routeCoords.length > 0 && (
+        <>
+          <Polyline positions={routeCoords} pathOptions={{ color: "#1b54fe", weight: 3, opacity: 0.8 }} />
+          <FitBounds positions={routeCoords} />
+        </>
+      )}
 
-                  <Marker
-                    longitude={selectedOrder.destination.longitude}
-                    latitude={selectedOrder.destination.latitude}
-                    anchor="bottom"
-                  >
-                    <div className="bg-[#fc655f] text-white p-2 rounded-md text-xs shadow-md">
-                      Destination
-                    </div>
-                  </Marker>
-                </>
-              )}
-          </Map>  
-    </div>
+      <Marker position={origin} icon={originIcon}>
+        <Popup>
+          <b>Origin:</b> {selectedOrder?.origin?.city}, {selectedOrder?.origin?.country}
+        </Popup>
+      </Marker>
+
+      <Marker position={destination} icon={destinationIcon}>
+        <Popup>
+          <b>Destination:</b> {selectedOrder?.destination.city}, {selectedOrder?.destination.country}
+        </Popup>
+      </Marker>
+
+    </MapContainer>
+  </div>
   )
+
+
+
+  
 }
 
 OrderMap.propTypes = {
@@ -44,10 +96,21 @@ OrderMap.propTypes = {
     origin: PropTypes.shape({
       latitude: PropTypes.number,
       longitude: PropTypes.number,
+      city:PropTypes.string,
+      country:PropTypes.string
     }),
     destination: PropTypes.shape({
       latitude: PropTypes.number,
       longitude: PropTypes.number,
+      city:PropTypes.string,
+      country:PropTypes.string
     }),
+    current_location: {
+      latitude: PropTypes.number,
+      longitude:PropTypes.number,
+    },
   }),
 };
+
+
+

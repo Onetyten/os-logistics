@@ -3,6 +3,7 @@ import { FLUSH, PAUSE, PERSIST, persistReducer,persistStore, PURGE, REGISTER, RE
 import storage from 'redux-persist/lib/storage'
 import shipmentReducer from '/utils/state/shipmentSlice/shipmentSlice'
 import darkModeReducer from '/utils/state/darkMode/darkModeSlice'
+import selectedOrderReducer from '/utils/state/selectedOrder/selectedOrderSlice'
 
 
 
@@ -11,12 +12,13 @@ const persistConfig={
     key:'root',
     version:1,
     storage,
-    whitelist:['shipment','darkmode']
+    whitelist:['shipment','darkmode','selectedOrder']
 }
 
 const reducer = combineReducers({
     shipment:shipmentReducer,
-    darkmode:darkModeReducer
+    darkmode:darkModeReducer,
+    selectedOrder:selectedOrderReducer
 })
 
 const persistedReducer = persistReducer(persistConfig,reducer)

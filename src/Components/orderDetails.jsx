@@ -4,6 +4,14 @@ import DetailListItem from "./detailListItem";
 
 
 export default function OrderDetails({selectedOrder}) {
+  
+  if (!selectedOrder||!selectedOrder.package_information ) {
+      return (
+        <div className="w-full min-h-96 flex items-center justify-center bg-boxclr rounded-xl shadow-md">
+          <p className="text-textclr">No order selected</p>
+        </div>
+      );
+  }
   return (
     <div className="flex flex-col h-72 p-3 overflow-y-scroll justify-start w-full items-center">
         <div className="flex-1 justify-start w-full p-3 gap-4 flex flex-col">

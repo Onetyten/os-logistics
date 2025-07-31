@@ -1,7 +1,28 @@
 
+import { useRef, useEffect } from "react";
 import PropTypes from 'prop-types'; // Import PropTypes
+import { useDispatch } from 'react-redux';
+import { setSelectedOrder } from '../../utils/state/selectedOrder/selectedOrderSlice';
 
-const OrderItem = ({ order, selectedOrder, setSelectedOrder }) => {
+const OrderItem = ({ order, selectedOrder }) => {
+    const dispatch = useDispatch()
+    const itemRef = useRef();
+
+    const isSelected = selectedOrder?.package_information?.package_id === order?.package_information?.package_id;
+
+    useEffect(() => {
+      if (isSelected && itemRef.current) {
+        itemRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, []);
+    if (!selectedOrder||!selectedOrder.package_information ) {
+        return (
+          <div className="w-full min-h-96 flex items-center justify-center bg-boxclr rounded-xl shadow-md">
+            <p className="text-textclr">No order selected</p>
+          </div>
+        );
+    }
+    
     const statusColors = {
       "Delivered": "bg-green-400/50",
       "In Transit": "bg-clr2-75",
@@ -26,10 +47,12 @@ const OrderItem = ({ order, selectedOrder, setSelectedOrder }) => {
       "Cancelled": "w-0 bg-red-500",
       "Delivered": "w-full"
     };
+
+
   
   return (
-    <div
-      className={` ${selectedOrder?.package_information.package_id === order.package_information.package_id ? "bg-primary text-boxclr" : "bg-boxclr text-textclr"} rounded-md shadow-md p-4 cursor-pointer`} onClick={() => setSelectedOrder(order)}>
+    <div ref={itemRef}
+      className={` ${selectedOrder?.package_information.package_id === order?.package_information.package_id ? "bg-primary text-boxclr" : "bg-boxclr text-textclr"} rounded-md shadow-md p-4 cursor-pointer`} onClick={() => dispatch(setSelectedOrder(order))}>
       {/* Order Header */}
       <div className="flex justify-between items-center">
         <p className="md:text-sm text-xs font-semibold">
@@ -59,7 +82,7 @@ const OrderItem = ({ order, selectedOrder, setSelectedOrder }) => {
           {order.updates.map((update, idx) => (
             <div key={idx} className="flex justify-between items-center py-2 rounded-md">
               <p className="text-xs font-medium">{update.state}</p>
-              <p className={`text-xs ${selectedOrder?.package_information.package_id === order.package_information.package_id
+              <p className={`text-xs ${selectedOrder?.package_information.package_id === order?.package_information.package_id
                 ? "text-boxclr" : "text-textclr2"} `}>
                 {new Date(update.timeline).toLocaleString()}
               </p>
