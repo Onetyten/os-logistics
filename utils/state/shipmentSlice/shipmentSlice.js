@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchShipment = createAsyncThunk(
     'shipment/fetchShipmentData',
     async()=>{
-        const response  = await axios.get('/utils/json/shipmentData.json')
+        const response  = await axios.get('/json/shipmentData.json')
         return response.data
     }
 )
