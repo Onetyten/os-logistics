@@ -1,39 +1,33 @@
 import { useState } from 'react';
 import OrderList from './orderList';
-import { useContext } from "react"
-import { AppContext } from "../Context"
+import { useShipmentAnalysis } from '../hooks/shipmentAnalysis';
 
 export default function OrderByCountries() {
-    const {oLoading,oNew,OnRoute,oInStorage,oChecking} = useContext(AppContext)
-    const shippingOrders = [...OnRoute, ...oInStorage, ...oChecking];
-    
+    const {newOrders,preparingOrders,shippingOrders} = useShipmentAnalysis()
     const [countriesTabIndex, setCountriesTabIndex] = useState(1)
+
+    const tabs = [
+        {name:"New",key:1,orders:newOrders},
+        {name:"Preparing",key:2,orders:preparingOrders},
+        {name:"Shipping",key:3,orders:shippingOrders},
+    ]
 
     return (
         <div className="bg-boxclr rounded-md row-span-2 w-full h-96 overflow-hidden relative col-span-4 p-3 xl:col-span-3 shadow-md">
             <p className="text-sm font-semibold">Orders by countries</p>
+
             <div className=" shadow-md text-sm sticky top-0 flex my-4 justify-around">
-                <div onClick={() => setCountriesTabIndex(1)} 
-                     className={`${countriesTabIndex === 1 ? "bg-boxclr" : "bg-bkground"} py-3 cursor-pointer text-center w-full h-full`}>
-                    <p>New</p>
-                </div>
-                <div onClick={() => setCountriesTabIndex(2)} 
-                     className={`${countriesTabIndex === 2 ? "bg-boxclr" : "bg-bkground"} py-3 cursor-pointer text-center w-full h-full`}>
-                    <p>Preparing</p>
-                </div>
-                <div onClick={() => setCountriesTabIndex(3)} 
-                     className={`${countriesTabIndex === 3 ? "bg-boxclr" : "bg-bkground"} py-3 cursor-pointer text-center w-full h-full`}>
-                    <p>Shipping</p>
-                </div>
+                {tabs.map((item)=>{
+                    return(
+                        <div onClick={() => setCountriesTabIndex(item.key)} key={item.key} className={`${countriesTabIndex === item.key ? "bg-boxclr" : "bg-bkground"} py-3 cursor-pointer text-center w-full h-full`}>
+                        <p>{item.name}</p>
+                    </div>
+                    )
+                })}
             </div>
 
             <div className='overflow-y-scroll h-full'>
-                {/* new */}
-                {countriesTabIndex === 1 && <OrderList Orders = {oNew}/> }
-                {/* loading */}
-                {countriesTabIndex === 2 && <OrderList Orders = {oLoading} name /> }
-                {/* shipping */}
-                {countriesTabIndex === 3 && <OrderList Orders = {shippingOrders} />}
+                {tabs.map((item)=> countriesTabIndex === item.key && <OrderList key={item.key} Orders = {item.orders}/>)}
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import "tailwindcss";
+
 
 
 
@@ -43,6 +44,12 @@ div::-webkit-scrollbar {
   display: none;
 }
 
+
+.react-calendar-heatmap-month-label {
+  font-weight:300; 
+}
+
+
 .dark-theme{
   color-scheme:light dark ;
   --background-color:#08070c;
@@ -80,10 +87,15 @@ div::-webkit-scrollbar {
   --color-clr3-50: var(--color3-50);
   --color-clr3-75: var(--color3-75);
   --font-ibm:  "Orbitron", serif;
-  --font-noto: "Noto Sans Display", sans-serif;
+  --font-nunito: "Nunito", sans-serif;
 
 }
 
 html{
   background-color: var(--background-color);
 }
+.react-calendar-heatmap .color-scale-0 { fill: #1b54fe20; }
+.react-calendar-heatmap .color-scale-1 { fill: #1b54fe60; }
+.react-calendar-heatmap .color-scale-2 { fill: #1b54fe80; }
+.react-calendar-heatmap .color-scale-3 { fill: #1b54fec5; }
+.react-calendar-heatmap .color-scale-4 { fill: #1b54fe; }

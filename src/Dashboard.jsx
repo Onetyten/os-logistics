@@ -30,23 +30,23 @@ export default function Dashboard() {
         
         {/* On route vehicles */}
         <Suspense fallback={<StatusLazy/>} >
-          <StatusGrid icon={<FontAwesomeIcon icon={faTruck} />} message="of shipments are on route" color={"text-blue-300"} bgcolor={"bg-blue-500/50"} count={shipmentStatusCount.inTransit+shipmentStatusCount.loading+shipmentStatusCount.checkingIn+shipmentStatusCount.unloading} percentage={shipmentStatusPercentage.inTransit+shipmentStatusPercentage.loading+shipmentStatusPercentage.checkingIn+shipmentStatusPercentage.unloading}/>
+          <StatusGrid icon={<FontAwesomeIcon icon={faTruck} />} message="of shipments are on route" color={"text-blue-500"} bgcolor={"bg-blue-500/50"} count={shipmentStatusCount.inTransit+shipmentStatusCount.loading+shipmentStatusCount.checkingIn+shipmentStatusCount.unloading} percentage={shipmentStatusPercentage.inTransit+shipmentStatusPercentage.loading+shipmentStatusPercentage.checkingIn+shipmentStatusPercentage.unloading}/>
         </Suspense>
        
         {/* In storage vehicles */}
         <Suspense fallback={<StatusLazy/>} >
-          <StatusGrid icon={<FontAwesomeIcon icon={faWarehouse} />} message="of shipments are in storage" color={"text-orange-300"} bgcolor={"bg-orange-400/50"}  count={shipmentStatusCount.inStorage} percentage={shipmentStatusPercentage.inStorage}/>
+          <StatusGrid icon={<FontAwesomeIcon icon={faWarehouse} />} message="of shipments are in storage" color={"text-orange-500"} bgcolor={"bg-orange-400/50"}  count={shipmentStatusCount.inStorage} percentage={shipmentStatusPercentage.inStorage}/>
         </Suspense>
 
         {/* Error-prone vehicles */}
         <Suspense fallback={<StatusLazy/>} >
-          <StatusGrid icon={<FontAwesomeIcon icon={faWarehouse} />} message="of shipments have errors" color={"text-red-400"} bgcolor={"bg-red-500/50"}  count={shipmentStatusCount.cancelled+shipmentStatusCount.delayed} percentage={shipmentStatusPercentage.cancelled+shipmentStatusPercentage.delayed}/>
+          <StatusGrid icon={<FontAwesomeIcon icon={faWarehouse} />} message="of shipments have errors" color={"text-red-500"} bgcolor={"bg-red-500/50"}  count={shipmentStatusCount.cancelled+shipmentStatusCount.delayed} percentage={shipmentStatusPercentage.cancelled+shipmentStatusPercentage.delayed}/>
         </Suspense>
 
 
         {/* Delivered*/}
         <Suspense fallback={<StatusLazy/>} >
-          <StatusGrid icon={<FontAwesomeIcon icon={faWarehouse} />} message="of shipments have been delivered" color={"text-teal-500"} bgcolor={"bg-teal-600/50"}  count={shipmentStatusCount.delivered} percentage={shipmentStatusPercentage.delivered}/>
+          <StatusGrid icon={<FontAwesomeIcon icon={faWarehouse} />} message="of shipments have been delivered" color={"text-teal-600"} bgcolor={"bg-teal-600/50"}  count={shipmentStatusCount.delivered} percentage={shipmentStatusPercentage.delivered}/>
         </Suspense>
 
 

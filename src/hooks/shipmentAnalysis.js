@@ -1,3 +1,4 @@
+
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -77,12 +78,50 @@ export const useShipmentAnalysis=() => {
       },0)
     },[notDeliveredShipment])
 
-    
-    
+    const newOrders = useMemo(()=>{
+      return shipmentData.filter(item=>item.status=="Checking In")
+    },[shipmentData])
+
+    const preparingOrders = useMemo(()=>{
+      return shipmentData.filter(item=>item.status=="Loading")
+    },[shipmentData])
+
+    const shippingOrders = useMemo(()=>{
+      return shipmentData.filter(item=>item.status!=="Loading" && item.status!=="Checking In")
+    },[shipmentData])
+
+    const dailyShipments = useMemo(()=>{
+      return shipmentData.map((item)=>item.updates[0]?.timeline)
+    },[shipmentData])
+
+    const dailyShipmentCount = useMemo(()=>{
+      return dailyShipments.reduce((acc,item)=>{
+        acc[item] = (acc[item]||0)+1
+        return acc
+      },{})
+    },[dailyShipments])
+
+    const dailyshipmentChart = Object.entries(dailyShipmentCount).map(([date,count])=> {
+      return(
+        {"date":date.split("T")[0],"value":count}
+      )
+    })
+
+    const deliveryDays = useMemo(()=>{
+      return shipmentData.map( (item,index)=> {
+        return{
+          "shipment":index,
+          "delivery_time":(new Date(item.eta) - new Date(item.updates[0]?.timeline))/ (1000 * 60 * 60 * 24)
+        }
+      })
+    },[shipmentData])
+
+        
+          
 
 
 
 
 
-  return {TotalSize,shipmentStatusCount,shipmentStatusPercentage,intransitVehicleList,totalDistance}
+  return {shipmentData,TotalSize,shipmentStatusCount,shipmentStatusPercentage,intransitVehicleList,totalDistance,newOrders,preparingOrders,shippingOrders,dailyshipmentChart,deliveryDays}
 }
