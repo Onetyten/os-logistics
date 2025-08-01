@@ -5,12 +5,22 @@ import { NavLink as Link } from "react-router";
 import {useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchShipment } from "../utils/state/shipmentSlice/shipmentSlice";
+// import { persistor } from "../store";
+
+
 
 export default function Sidebar() {
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(fetchShipment())
   },[dispatch])
+
+  // useEffect(() => {
+  //   if (import.meta.env.DEV) {
+  //     persistor.purge();
+  //   }
+  // }, []);
+
   
   
 

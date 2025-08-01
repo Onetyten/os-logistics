@@ -59,7 +59,7 @@ export default function Invoice() {
       <div className="bg-bkground overflow-scroll md:text-sm text-xs px-4 gap-3 shadow-md flex-1 w-full flex-col h-full flex items-center justify-center">
 
 
-        <OrderMap route={route} selectedOrder={selectedOrder}/>
+        {/*<OrderMap route={route} selectedOrder={selectedOrder}/>*/}
         
         <div className="w-full">
          <p className="text-sm font-bold">Details</p>
