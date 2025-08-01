@@ -9,14 +9,12 @@ export const fetchShipment = createAsyncThunk(
 
       const contentType = res.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
-        console.error("Expected JSON but got:", contentType);
         return thunkAPI.rejectWithValue("Invalid content type");
       }
 
       const data = await res.json();
 
       if (!Array.isArray(data)) {
-        console.error("Shipment data is not an array:", data);
         return thunkAPI.rejectWithValue("Invalid shipment data structure");
       }
 

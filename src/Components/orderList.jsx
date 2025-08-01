@@ -6,6 +6,7 @@ import { FixedSizeList as List } from "react-window"
 import { NavLink as Link } from "react-router";
 import { useDispatch } from "react-redux";
 import { setSelectedOrder } from "../../utils/state/selectedOrder/selectedOrderSlice";
+import { setScrollTrue } from "../../utils/state/setAutoScroll/setAutoScrollSlice";
 
 
 
@@ -20,7 +21,10 @@ export default function OrderList({Orders }) {
             {({index,style})=>{
                 const item = Orders[index]
                 return(
-                <Link to="invoice" key={index} style={style} onClick={()=>{dispatch(setSelectedOrder(item))}} className="my-3 hover:bg-gray-300/20 cursor-pointer p-3 flex justify-between gap-4">
+                <Link to="invoice" key={index} style={style} onClick={()=>{
+                    dispatch(setSelectedOrder(item))
+                    dispatch(setScrollTrue())
+                    }} className="my-3 hover:bg-gray-300/20 cursor-pointer p-3 flex justify-between gap-4">
 
                     <div className="flex items-start gap-3 text-sm flex-1 text-clr2">
                         <div className="flex text-sm gap-2 text-clr2 items-center">

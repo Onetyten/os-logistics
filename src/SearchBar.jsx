@@ -9,6 +9,7 @@ import { FixedSizeList as List } from "react-window";
 import OutsideClickHandler from 'react-outside-click-handler';
 import { NavLink as Link } from "react-router";
 import { setSelectedOrder } from '../utils/state/selectedOrder/selectedOrderSlice';
+import { setScrollTrue } from '../utils/state/setAutoScroll/setAutoScrollSlice';
 
 export default function SearchBar() {
   const dispatch = useDispatch()
@@ -43,6 +44,7 @@ export default function SearchBar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
   }
 
   return (
@@ -54,19 +56,20 @@ export default function SearchBar() {
           <input type="text" value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="Search Orders" className="w-full px-2 bg-boxclr placeholder:text-text-clr2 text-text-clr2 focus:outline-0 text-sm h-full" />
         </div>
 
-        <div className='sm:flex hidden gap-1 items-center'>
-          <p className='text-textclr2 text-center'>Search by :</p>
-          <select className='text-textclr2 text-left bg-boxclr outline-none' value={filterBy} onChange={(e) => setFilterBy(e.target.value)}>
-            <option value="name">package name</option>
-            <option value="country">country</option>
-            <option value="ID">package id</option>
-          </select>
-        </div>
 
         <div className="h-full gap-4 md:gap-7 flex items-center justify-center px-3 md:px-5">
-         
+
+          <div className='sm:flex hidden gap-1 items-center'>
+            <p className='text-textclr2 text-center'>Search by :</p>
+            <select className='text-textclr2 text-left bg-boxclr outline-none' value={filterBy} onChange={(e) => setFilterBy(e.target.value)}>
+              <option value="name">name</option>
+              <option value="country">origin</option>
+              <option value="ID">track id</option>
+            </select>
+          </div>
+          
           <FontAwesomeIcon icon={faBell} className="text-textclr2 cursor-pointer" onClick={() => toast("No new notifications")} />
-          <div className={`flex items-center w-5 h-5 cursor-pointer overflow-hidden border-textclr2 rounded-full ${darkmode ? '' : 'border-[1px]'}`} onClick={toggleTheme} >
+          <div className={`flex items-center w-4 h-4 cursor-pointer overflow-hidden border-textclr2 rounded-full ${darkmode ? '' : 'border-[1px]'}`} onClick={toggleTheme} >
             <div className={`flex-1 h-full ${darkmode ? 'bg-textclr2' : 'bg-textclr2'} rounded-l-full`} />
             <div className={`flex-1 h-full ${darkmode ? 'bg-bkground' : 'bg-white'} rounded-r-full`} />
           </div>
@@ -85,7 +88,10 @@ export default function SearchBar() {
                   <Link to="invoice" onClick={()=>{
                     handleClear()
                     dispatch(setSelectedOrder(item))
-                  }} key={item.package_information?.package_id} style={style} className="px-4 py-2 border-b hover:bg-gray-300/20 border-bkground">
+                    dispatch(setScrollTrue())
+                  }} 
+                  
+                  key={item.package_information?.package_id} style={style} className="px-4 py-2 border-b hover:bg-gray-300/20 border-bkground">
                     <p className="text-sm font-bold text-textclr">
                       {item.package_information.package_name}
                     </p>

@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage'
 import shipmentReducer from '/utils/state/shipmentSlice/shipmentSlice'
 import darkModeReducer from '/utils/state/darkMode/darkModeSlice'
 import selectedOrderReducer from '/utils/state/selectedOrder/selectedOrderSlice'
+import setAuteScrollReducer from '/utils/state/setAutoScroll/setAutoScrollSlice'
 
 
 
@@ -18,7 +19,8 @@ const persistConfig={
 const reducer = combineReducers({
     shipment:shipmentReducer,
     darkmode:darkModeReducer,
-    selectedOrder:selectedOrderReducer
+    selectedOrder:selectedOrderReducer,
+    setScroll:setAuteScrollReducer
 })
 
 const persistedReducer = persistReducer(persistConfig,reducer)
