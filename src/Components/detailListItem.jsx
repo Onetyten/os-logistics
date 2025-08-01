@@ -2,9 +2,9 @@ import PropTypes from "prop-types"
 
 export default function DetailListItem({name,info}) {
   return (
-    <div className="flex justify-between text-center">
-        <p className="text-textclr2 font-bold uppercase text-md">{name}</p>
-        <p className="text-textclr font-semibold text-sm">
+    <div className="flex justify-between gap-4 text-center">
+        <p className="text-textclr2 text-left font-bold uppercase text-xs sm:text-md ">{name}</p>
+        <p className="text-textclr text-right font-semibold text-xs sm:text-sm">
             {info}
         </p>
     </div>

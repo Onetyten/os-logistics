@@ -29,21 +29,21 @@ export default function InvoiceDetails({selectedOrder}) {
 
 
   return (
-    <div className="w-full flex-1 bg-boxclr">
+    <div className="w-full mb-14 md:mb-0 flex-1 bg-boxclr">
 
           <div className="w-full grid grid-cols-3 shadow-md text-sm">
               <div  onClick={() => setInfoTabIndex(1)} className={`${InfoTabIndex == 1 ? "bg-boxclr" : "bg-bkground"} cursor-pointer flex items-center justify-center py-3 text-center w-full h-full`} >
-                <p>Package details</p>
+                <p>Package <span className="hidden sm:inline">details</span> </p>
               </div>
               <div  onClick={() => setInfoTabIndex(2)} className={`${InfoTabIndex == 2 ? "bg-boxclr" : "bg-bkground"} cursor-pointer  flex items-center justify-center py-3 text-center w-full h-full`}
               >
-                <p>Sender information</p>
+                <p>Sender <span className="hidden sm:inline">information</span></p>
               </div>
               <div  
                 onClick={() => setInfoTabIndex(3)} 
                 className={`${InfoTabIndex == 3 ? "bg-boxclr" : "bg-bkground"} cursor-pointer  flex items-center justify-center py-3 text-center w-full h-full`}
               >
-                <p>Receiver Information</p>
+                <p>Receiver <span className="hidden sm:inline">Information</span></p>
               </div>
             </div>
 
