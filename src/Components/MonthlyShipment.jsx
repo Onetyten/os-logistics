@@ -5,8 +5,8 @@ import { Tooltip } from 'react-tooltip';
 
 export default function MonthlyShipment() {
     const { dailyshipmentChart } = useShipmentAnalysis();
-    const from = dailyshipmentChart[0].day;
-    const to = dailyshipmentChart[dailyshipmentChart.length - 1].day;
+    const from = dailyshipmentChart[0].date;
+    const to = dailyshipmentChart[dailyshipmentChart.length - 1].date;
 
     return (
         <div className="bg-boxclr rounded-md col-span-4 w-full h-96 p-3 sm:p-6 row-span-2 overflow-hidden shadow-md">
