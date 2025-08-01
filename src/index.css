@@ -99,3 +99,7 @@ html{
 .react-calendar-heatmap .color-scale-2 { fill: #1b54fe80; }
 .react-calendar-heatmap .color-scale-3 { fill: #1b54fec5; }
 .react-calendar-heatmap .color-scale-4 { fill: #1b54fe; }
+.react-calendar-heatmap-month-label {
+   font-size: 0.5rem !important;
+  font-weight: 400;
+}
