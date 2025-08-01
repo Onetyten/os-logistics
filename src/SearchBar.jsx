@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { faBell, faSearch} from "@fortawesome/free-solid-svg-icons";
+import { faBell} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';

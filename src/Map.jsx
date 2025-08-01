@@ -24,7 +24,7 @@ export default function MapView() {
   return (
     <div className="w-full z-10 h-[88vh] flex justify-center overflow-hidden items-center">
       <Suspense fallback={<div className="bg-textclr2 h-full w-full"></div>}>
-          <MapContainer center={center} zoom={5} minZoom={4}  style={{ height: "100%", width: "100%" }}>
+          <MapContainer center={center} zoom={5} minZoom={4} maxZoom={15}  style={{ height: "100%", width: "100%" }}>
             {/* simplest */}
             {/* <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
