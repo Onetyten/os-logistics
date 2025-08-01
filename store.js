@@ -12,7 +12,7 @@ const persistConfig={
     key:'root',
     version:1,
     storage,
-    whitelist:['shipment','darkmode','selectedOrder']
+    whitelist:['darkmode','selectedOrder']
 }
 
 const reducer = combineReducers({

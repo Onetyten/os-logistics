@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 export const useShipmentAnalysis=() => {
     // this is the data fetched from the json
     const shipmentData = useSelector((state)=>state.shipment.shipment)
-
     // map shipment statuses from the array
     const shipmentStatus = shipmentData.map(item=>item.status)
   

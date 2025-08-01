@@ -14,7 +14,7 @@ const OrderItem = ({ order, selectedOrder }) => {
       if (isSelected && itemRef.current) {
         itemRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
       }
-    }, []);
+    }, [isSelected]);
     if (!selectedOrder||!selectedOrder.package_information ) {
         return (
           <div className="w-full min-h-96 flex items-center justify-center bg-boxclr rounded-xl shadow-md">
