@@ -1,6 +1,6 @@
 
 import { useRef, useEffect } from "react";
-import PropTypes from 'prop-types'; // Import PropTypes
+import PropTypes, { string } from 'prop-types'; // Import PropTypes
 import { useDispatch } from 'react-redux';
 import { setSelectedOrder } from '../../utils/state/selectedOrder/selectedOrderSlice';
 
@@ -8,13 +8,14 @@ const OrderItem = ({ order, selectedOrder }) => {
     const dispatch = useDispatch()
     const itemRef = useRef();
 
-    const isSelected = selectedOrder?.package_information?.package_id === order?.package_information?.package_id;
+    const isSelected = selectedOrder?.id === order?.id;
 
     useEffect(() => {
       if (isSelected && itemRef.current) {
         itemRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
       }
-    }, [isSelected]);
+    }, []);
+
     if (!selectedOrder||!selectedOrder.package_information ) {
         return (
           <div className="w-full min-h-96 flex items-center justify-center bg-boxclr rounded-xl shadow-md">
@@ -104,6 +105,7 @@ const OrderItem = ({ order, selectedOrder }) => {
 // Prop types validation
 OrderItem.propTypes = {
   order: PropTypes.shape({
+    id:string,
     package_information: PropTypes.shape({
       package_id: PropTypes.string.isRequired,
     }).isRequired,
@@ -115,7 +117,9 @@ OrderItem.propTypes = {
       })
     ).isRequired,
   }).isRequired,
+
   selectedOrder: PropTypes.shape({
+    id:string,
     package_information: PropTypes.shape({
       package_id: PropTypes.string,
     }),

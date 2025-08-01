@@ -49,9 +49,6 @@ export default function SearchBar() {
   <OutsideClickHandler onOutsideClick={handleClear}>
     <div className='relative'>
       <form onSubmit={handleSubmit} className="w-full bg-boxclr h-12 shadow-md flex items-center rounded-md p-2">
-        <div className="h-full flex items-center justify-center px-2">
-          <FontAwesomeIcon icon={faSearch} className="text-textclr" />
-        </div>
 
         <div className="flex-1 relative h-full flex items-center">
           <input type="text" value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="Search Orders" className="w-full px-2 bg-boxclr placeholder:text-text-clr2 text-text-clr2 focus:outline-0 text-sm h-full" />
