@@ -79,7 +79,6 @@ const OrderItem = ({ order, selectedOrder }) => {
         ></div>
       </div>
 
-      {/* Order Updates */}
       <div className="mt-4">
         <div className="mt-2 space-y-2">
           {order.updates.map((update, idx) => (

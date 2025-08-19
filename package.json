@@ -30,6 +30,8 @@
     "date-fns": "^4.1.0",
     "leaflet": "^1.9.4",
     "maplibre-gl": "^5.1.1",
+    "overlayscrollbars": "^2.11.5",
+    "overlayscrollbars-react": "^0.5.6",
     "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-calendar-heatmap": "^1.10.0",

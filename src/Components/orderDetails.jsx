@@ -13,7 +13,7 @@ export default function OrderDetails({selectedOrder}) {
       );
   }
   return (
-    <div className="flex flex-col h-72 p-3 overflow-y-scroll justify-start w-full items-center">
+    <div className="flex flex-col h-72 p-3 overflow-y-scroll justify-start w-full hide-scrollbar items-center">
         <div className="flex-1 justify-start w-full p-3 gap-4 flex flex-col">
 
             <DetailListItem name="PACKAGE ID" info={selectedOrder?.package_information?.package_id} />

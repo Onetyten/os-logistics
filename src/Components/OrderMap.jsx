@@ -120,7 +120,7 @@ export default function OrderMap({ selectedOrder }) {
   }
 
   return (
-    <div className="w-full z-0 rounded-xl shadow-md overflow-hidden min-h-96 flex-1 bg-boxclr">
+    <div className="w-full z-0 rounded-xl shadow-md overflow-hidden min-h-64 2xl:min-h-96 flex-1 bg-boxclr">
       <MapContainer  center={mapCenter}  zoom={mapZoom}  scrollWheelZoom={true}  minZoom={1}  maxZoom={15}  style={{ height: "100%", width: "100%" }} key={`${selectedOrder?.id || 'default'}-${origin?.lat || 0}-${destination?.lat || 0}`}>
         <TileLayer
           url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"

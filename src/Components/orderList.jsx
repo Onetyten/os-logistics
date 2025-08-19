@@ -16,8 +16,8 @@ export default function OrderList({Orders }) {
     const dispatch = useDispatch()
     const itemHeight = 100
   return (
-    <div className="w-full h-full flex flex-col mb-8">
-        <List height={500} itemCount={Orders.length} itemSize={itemHeight} width="100%">
+    <div className="w-full h-full hide-scrollbar flex flex-col mb-8">
+        <List height={500} itemCount={Orders.length} itemSize={itemHeight} width="100%" className="hide-scrollbar">
             {({index,style})=>{
                 const item = Orders[index]
                 return(

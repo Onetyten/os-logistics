@@ -16,7 +16,7 @@ export default function OrderByCountries() {
         <div className="bg-boxclr rounded-md row-span-2 w-full h-96 overflow-hidden relative col-span-4 p-3 xl:col-span-3 shadow-md">
             <p className="text-sm font-semibold">Orders by countries</p>
 
-            <div className=" shadow-md text-sm sticky top-0 flex my-4 justify-around">
+            <div className=" shadow-md text-sm sticky top-0 flex my-4 mb-0 justify-around">
                 {tabs.map((item)=>{
                     return(
                         <div onClick={() => setCountriesTabIndex(item.key)} key={item.key} className={`${countriesTabIndex === item.key ? "bg-boxclr" : "bg-bkground"} py-3 cursor-pointer text-center w-full h-full`}>
@@ -26,7 +26,7 @@ export default function OrderByCountries() {
                 })}
             </div>
 
-            <div className='overflow-y-scroll h-full'>
+            <div className='overflow-y-hidden h-68'>
                 {tabs.map((item)=> countriesTabIndex === item.key && <OrderList key={item.key} Orders = {item.orders}/>)}
             </div>
         </div>

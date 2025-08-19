@@ -3,6 +3,8 @@
 @import "tailwindcss";
 
 
+
+
 :root {
   font-family:Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -37,11 +39,17 @@
   --color3-75:#fc655fb3;
 
 }
-div::-webkit-scrollbar {
-  display: none;
+
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  
+  scrollbar-width: none; 
 }
 
-
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 .react-calendar-heatmap-month-label {
   font-weight:300; 
 }
@@ -100,3 +108,19 @@ html{
    font-size: 0.5rem !important;
   font-weight: 400;
 }
+
+.os-scrollbar-vertical > .os-scrollbar-track > .os-scrollbar-handle {
+  background-color: #1b54fe59;
+  border-radius: 3px;
+  width: 12px;
+  border: 1px solid white;
+}
+
+.os-scrollbar-vertical:hover > .os-scrollbar-track > .os-scrollbar-handle {
+  background-color: #1b54fe59;
+  border-radius: 3px;
+  width: 15px;
+  border: 1px solid white;
+}
+
+

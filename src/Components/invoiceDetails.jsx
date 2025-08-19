@@ -11,7 +11,7 @@ export default function InvoiceDetails({selectedOrder}) {
   return (
     <div className="w-full mb-14 md:mb-0 flex-1 bg-boxclr">
 
-          <div className="w-full grid grid-cols-3 shadow-md text-sm">
+          <div className="w-full grid grid-cols-3 shadow-md text-sm ">
               <div  onClick={() => setInfoTabIndex(1)} className={`${InfoTabIndex == 1 ? "bg-boxclr" : "bg-bkground"} cursor-pointer flex items-center justify-center py-3 text-center w-full h-full`} >
                 <p>Package <span className="hidden sm:inline">details</span> </p>
               </div>
