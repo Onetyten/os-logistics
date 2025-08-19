@@ -3,9 +3,7 @@ import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
 export const useShipmentAnalysis=() => {
-    // this is the data fetched from the json
     const shipmentData = useSelector((state)=>state.shipment.shipment)
-    // map shipment statuses from the array
     const shipmentStatus = shipmentData.map(item=>item.status)
   
     const shipmentStatusObject = useMemo(()=>{
@@ -14,8 +12,6 @@ export const useShipmentAnalysis=() => {
         return acc
     },{})
     },[shipmentStatus])
-
-    //get the length of all the statuses
     const TotalSize = useMemo(()=>{
       return shipmentStatus.length
     },[shipmentStatus])
@@ -46,7 +42,7 @@ export const useShipmentAnalysis=() => {
       }
     },[shipmentStatusCount,TotalSize])
 
-    // to be used in vehicle overview
+
     const inTransitShipment = useMemo(()=>{
       return shipmentData.filter(item=>item.status=="In Transit")
     },[shipmentData])
@@ -116,10 +112,7 @@ export const useShipmentAnalysis=() => {
     },[shipmentData])
 
         
-          
-
-
-
+        
 
 
   return {shipmentData,TotalSize,shipmentStatusCount,shipmentStatusPercentage,intransitVehicleList,totalDistance,newOrders,preparingOrders,shippingOrders,dailyshipmentChart,deliveryDays}

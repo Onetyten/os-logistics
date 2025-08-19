@@ -1,11 +1,5 @@
 import { useState } from "react"
 import PropTypes from "prop-types";
-// import Truck0 from '/Images/TruckProgress0.png'
-// import Truck1 from '/Images/TruckProgress1.png'
-// import Truck2 from '/Images/TruckProgress2.png'
-// import Truck3 from '/Images/TruckProgress3.png'
-// import Truck4 from '/Images/TruckProgress4.png'
-// import Truck5 from '/Images/TruckProgress5.png'
 import OrderDetails from "./orderDetails";
 import SenderInformation from "./SenderInformation";
 import ReceiverInformation from "./receiverInformation";
@@ -13,20 +7,6 @@ import ReceiverInformation from "./receiverInformation";
 
 export default function InvoiceDetails({selectedOrder}) {
     const[ InfoTabIndex,setInfoTabIndex ]= useState(1)
-
-    // const truckImages = {
-    //     "New": Truck0,
-    //     "Loading": Truck1,
-    //     "Checking in": Truck1,
-    //     "In Transit": Truck2,
-    //     "Unloading": Truck3,
-    //     "In Storage": Truck4,
-    //     "Delayed": Truck4,
-    //     "Cancelled": Truck0,
-    //     "Delivered": Truck5,
-    // };
-    // const truckImageSrc = truckImages[selectedOrder?.status] || Truck0;
-
 
   return (
     <div className="w-full mb-14 md:mb-0 flex-1 bg-boxclr">

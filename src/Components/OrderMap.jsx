@@ -78,11 +78,11 @@ export default function OrderMap({ selectedOrder }) {
 
   const mapZoom = useMemo(() => {
     if (origin && destination) {
-      return 6; // Show both points
+      return 6;
     } else if (origin || destination) {
-      return 8; // Show single point
+      return 8;
     }
-    return DEFAULT_ZOOM; // World view
+    return DEFAULT_ZOOM;
   }, [origin, destination]);
 
   function FitBounds({ positions }) {

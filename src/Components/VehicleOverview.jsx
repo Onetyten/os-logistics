@@ -20,7 +20,6 @@ export default function VehicleOverview() {
                 <OverviewItem item="Delivered" color={"bg-blue-600"} percentage={statusPerc.delivered} />
             </div>
         </div>
-        
       
         <div className="mt-3 flex flex-col gap-3">
             {intransitVehicleList.map(([name,count])=>{
