@@ -11,8 +11,6 @@ import { Provider } from "react-redux"
 import { persistor, store } from "../store"
 import { PersistGate } from "redux-persist/integration/react"
 
-
-
 function App() {
 
   const [pages,setPages] = useState(["/","invoice","map"])
@@ -20,14 +18,9 @@ function App() {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <Router>
-
-            <div className="flex bg-bkground font-nunito items-center w-screen min-h-screen overflow-hidden relative">
-              
+            <div className="flex bg-background text-white font-console items-center w-screen min-h-screen overflow-hidden relative">
               <Sidebar pages = {pages} setPages = {setPages} />
-              
-
-              
-              <div className="flex flex-col flex-1 p-4 sm:p-8  overflow-y-scroll justify-start items-center h-screen ">
+              <div className="flex flex-col flex-1 p-4 sm:p-8  overflow-y-scroll justify-start items-center h-dvh ">
                 <div className="flex flex-col w-full gap-6 ">
                   <SearchBar/>
                   <Routes>
@@ -35,20 +28,9 @@ function App() {
                     <Route path="invoice" element={<Invoice/>}/>
                     <Route path="map" element={<Map/>}/>
                   </Routes>
-              
                 </div>
-
               </div>
-              <ToastContainer
-              position="top-right"
-              autoClose={2000}
-              hideProgressBar={true}
-              newestOnTop={true}
-              draggable
-              closeOnClick={false}
-              rtl={false}
-            />
-          
+              <ToastContainer position="top-right" autoClose={2000} hideProgressBar={true} newestOnTop={true} draggable closeOnClick={false} rtl={false}/>
             </div>
         </Router>
       </PersistGate>

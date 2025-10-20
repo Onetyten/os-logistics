@@ -25,22 +25,22 @@ export default function Sidebar() {
   
 
   return (
-    <div className="bg-boxclr z-20 md:w-52 bottom-0 left-0 shadow-md md:p-6 fixed md:relative w-full h-16  md:h-screen flex gap-10 flex-row md:flex-col justify-start">
-      <p className="text-primary text-xl 2xl:text-3xl font-ibm font-bold hidden md:block">OS</p>
+    <div className="bg-boxclr z-20 md:w-52 bottom-0 left-0 shadow-lg md:p-6 fixed md:relative w-full h-16  md:h-screen bg-box flex gap-10 flex-row md:flex-col justify-start">
+      <p className="text-primary text-xl 2xl:text-5xl font-ibm font-bold hidden md:block">OS</p>
       <div className="flex md:gap-4 md:flex-col flex-row md:flex-start justify-around items-center md:items-start w-full">
 
         
-      <Link to="/" end className={({ isActive }) => `md:text-sm gap-3 justify-start md:flex-row text-xs flex-col items-center flex ${isActive ? "text-primary" :"text-textclr"}`} >
+      <Link to="/" end className={({ isActive }) => `md:text-base gap-3 justify-start md:flex-row text-xs flex-col items-center flex ${isActive ? "text-primary" :"text-muted"}`} >
         <FontAwesomeIcon icon={faHome} />
         <p>Dashboard</p>
       </Link>
 
-      <Link to="/invoice" className={({ isActive }) =>`md:text-sm gap-3 justify-start md:flex-row text-xs flex-col items-center flex ${isActive ? "text-primary" :"text-textclr"}`}>
+      <Link to="/invoice" className={({ isActive }) =>`md:text-base gap-3 justify-start md:flex-row text-xs flex-col items-center flex ${isActive ? "text-primary" :"text-muted"}`}>
         <FontAwesomeIcon icon={faTruck} />
         <p>Invoice</p>
       </Link>
 
-      <Link to="/map" className={({ isActive }) =>`md:tm gap-3 justify-start md:flex-row text-xs flex-col items-center flex ${isActive ? "text-primary" :"text-textclr"}`}>
+      <Link to="/map" className={({ isActive }) =>`md:text-base gap-3 justify-start md:flex-row text-xs flex-col items-center flex ${isActive ? "text-primary" :"text-muted"}`}>
             <FontAwesomeIcon icon={faCompass} />
         <p>Map</p>
       </Link>

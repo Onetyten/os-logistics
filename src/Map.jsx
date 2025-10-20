@@ -3,6 +3,7 @@ import L from "leaflet";
 import { useShipmentAnalysis } from "./hooks/shipmentAnalysis";
 import "leaflet/dist/leaflet.css";
 import { Suspense } from "react";
+import SpotlightBorder from "./Components/SpotlightBorder";
 
 
 const originIcon = new L.Icon({
@@ -22,7 +23,7 @@ export default function MapView() {
   const center = [20, 0];
 
   return (
-    <div className="w-full z-10 h-[88vh] flex justify-center overflow-hidden items-center">
+    <SpotlightBorder className="w-full z-10 h-[88vh] border-4 border-border-muted flex justify-center overflow-hidden items-center">
       <Suspense fallback={<div className="bg-textclr2 h-full w-full"></div>}>
           <MapContainer center={center} zoom={5} minZoom={4} maxZoom={15}  style={{ height: "100%", width: "100%" }}>
             <TileLayer
@@ -40,7 +41,7 @@ export default function MapView() {
                 <div key={index}>
                   <Polyline
                     positions={[origin, destination]}
-                    pathOptions={{ color: "#1b54fe", weight: 1, opacity: 0.4 }}
+                    pathOptions={{ color: "#3ECF8E", weight: 1, opacity: 0.4 }}
                   />
 
                   <Marker position={origin} icon={originIcon}>
@@ -59,6 +60,6 @@ export default function MapView() {
           </MapContainer>
       </Suspense>
 
-    </div>
+    </SpotlightBorder>
   );
 }

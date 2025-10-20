@@ -4,8 +4,8 @@ export default function OverviewItem(props) {
     const {item ,color,percentage} = props
   return (
     <div className={`${color} w-full flex flex-col justify-between gap-3 py-2 px-1`}>
-        <p className="text-xs md:text-[10px] text-center font-semibold">{item}</p>
-        <p className="text-xs md:text-[1opx] text-center mb-1">{percentage}%</p>
+        <p className="text-sm text-center font-semibold">{item}</p>
+        <p className="text-sm text-center mb-1">{percentage}%</p>
     </div>
   )
 }

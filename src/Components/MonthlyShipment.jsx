@@ -2,6 +2,7 @@ import { useShipmentAnalysis } from '../hooks/shipmentAnalysis';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
 import { Tooltip } from 'react-tooltip';
+import SpotlightBorder from './SpotlightBorder';
 
 export default function MonthlyShipment() {
     const { dailyshipmentChart } = useShipmentAnalysis();
@@ -9,11 +10,11 @@ export default function MonthlyShipment() {
     // const to = dailyshipmentChart[dailyshipmentChart.length - 1].day;
 
     return (
-        <div className="bg-boxclr rounded-md col-span-4 w-full row-span-3 p-3 sm:p-6 overflow-hidden shadow-md">
-            <p className="text-sm font-semibold mb-8">Monthly shipment</p>
+        <SpotlightBorder className="bg-boxclr rounded-md col-span-4 w-full row-span-3 p-3 sm:p-6 overflow-hidden shadow-md">
+            <p className="text-lg text-primary font-semibold mb-8">Monthly shipment</p>
             <div className='flex flex-col justify-center  h-full'>
              
-              <div className='mb-20'>
+              <div className='mb-20 text-muted'>
                   <CalendarHeatmap
                       values={dailyshipmentChart}
                     //   startDate={from}
@@ -34,6 +35,6 @@ export default function MonthlyShipment() {
               </div>
               <Tooltip id="shipment-tooltip" />
             </div>
-        </div>
+        </SpotlightBorder>
     );
 }

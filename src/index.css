@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
 @import "tailwindcss";
 
 
 
 
 :root {
-  font-family:Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -14,32 +13,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --background-color:#edf0f8;
-  --primary-color:#1b54fe;
-  --primary-color-25:#1b54fe39;
-  --primary-color-50:#1b54fe7b;
-  --primary-color-75:#1b54feb3;
-  --box-color:#f9fafe;
-  --text-color:#262626;
-  --text-color2:#79828b;
-
+  --primary : #3ECF8E;
+  --primary-100: #00C573;
+  --primary-200: #006239;
+  --background: #121212;
+  --box:#171717;
+  --muted:#898989;
+  --border-muted:#454545;
+  --border-active:#FAFAFA;
   --color1:#feab00;
-  --color1-25:#fea90039;
-  --color1-50:#feab007b;
-  --color1-75:#feab00b3;
-
   --color2:#13e09e;
-  --color2-25:#13e09e39;
-  --color2-50:#13e09e7b;
-  --color2-75:#13e09eb3;
-
   --color3:#fc655f;
-  --color3-25:#fc655f39;
-  --color3-50:#fc655f7b;
-  --color3-75:#fc655fb3;
-
 }
-
 
 .hide-scrollbar {
   -ms-overflow-style: none;  
@@ -55,57 +40,40 @@
 }
 
 
-.dark-theme{
-  color-scheme:light dark ;
-  --background-color:#08070c;
-  --primary-color:#1b54fe;
-  --box-color:#191c22;
-  --text-color:#f9fafe;
-  --text-color2:#79828b;
-  --color1:#feab00;
-  --color2:#13e09e;
-  --color3:#fc655f;
-}
-
 @theme{
-  --color-bkground : var(--background-color);
-  --color-primary: var(--primary-color);
-  --color-primary-25: var(--primary-color-25);
-  --color-primary-50: var(--primary-color-50);
-  --color-primary-75: var(--primary-color-75);
-  --color-boxclr: var(--box-color);
-  --color-textclr: var(--text-color);
-  --color-textclr2: var(--text-color2);
-
-  --color-clr1: var(--color1);
-  --color-clr1-25: var(--color1-25);
-  --color-clr1-50: var(--color1-50);
-  --color-clr1-75: var(--color1-75);
-
-  --color-clr2: var(--color2);
-  --color-clr2-25: var(--color2-25);
-  --color-clr2-50: var(--color2-50);
-  --color-clr2-75: var(--color2-75);
-
-  --color-clr3: var(--color3);
-  --color-clr3-25: var(--color3-25);
-  --color-clr3-50: var(--color3-50);
-  --color-clr3-75: var(--color3-75);
+  --color-background : var(--background);
+  --color-primary: var(--primary);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-box: var(--box);
+  --color-muted: var(--muted);
+  --color-border-muted: var(--border-muted);
+  --color-border-active: var(--border-active);
+  --color-color1: var(--color1);
+  --color-color2: var(--color2);
+  --color-color3: var(--color3);
+  --font-console: "Inconsolata", monospace;
   --font-ibm:  "Orbitron", serif;
-  --font-nunito: "Nunito", sans-serif;
+  --breakpoint-xs:360px;
+  --breakpoint-xxs:300px;
+
 
 }
 
 html{
   background-color: var(--background-color);
+  font-family:"Inconsolata", monospace;
 }
-.react-calendar-heatmap .color-scale-0 { fill: #1b54fe20; }
-.react-calendar-heatmap .color-scale-1 { fill: #1b54fe60; }
-.react-calendar-heatmap .color-scale-2 { fill: #1b54fe80; }
-.react-calendar-heatmap .color-scale-3 { fill: #1b54fec5; }
-.react-calendar-heatmap .color-scale-4 { fill: #1b54fe; }
+
+
+.react-calendar-heatmap .color-scale-0 { fill: #3ECF8E20; }
+.react-calendar-heatmap .color-scale-1 { fill: #3ECF8E60; }
+.react-calendar-heatmap .color-scale-2 { fill: #3ECF8E80; }
+.react-calendar-heatmap .color-scale-3 { fill: #3ECF8Ec5; }
+.react-calendar-heatmap .color-scale-4 { fill: #3ECF8E; }
 .react-calendar-heatmap-month-label {
-   font-size: 0.5rem !important;
+   font-size: 0.45rem !important;
+   color: var(--mute);
   font-weight: 400;
 }
 
@@ -124,3 +92,22 @@ html{
 }
 
 
+.spotlight{
+  --border-width: 2px;
+  --spot:radial-gradient(
+    circle at var(--x) var(--y),#fafafaa6,transparent 180px
+  );
+  background-attachment: fixed;
+}
+.spotlight::before{
+  content: '';
+  background: var(--spot),#252525;
+  mask: 
+  linear-gradient(#fff,#fff) 50% 0 / 100% var(--border-width) no-repeat,
+  linear-gradient(#fff,#fff) 100% 0 / var(--border-width) 100% no-repeat,
+  linear-gradient(#fff,#fff) 50% 100% / 100% var(--border-width) no-repeat,
+  linear-gradient(#fff,#fff) 0 0 / var(--border-width) 100% no-repeat;
+  mask-repeat: no-repeat;
+  background-attachment: fixed;
+  border-radius: inherit;
+}
