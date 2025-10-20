@@ -6,8 +6,8 @@ export default function VehicleOverview() {
     
 
   return (
-    <div className={` col-span-4 flex flex-col justify-between  w-full min-h-32 row-span-2 gap-4 `}>
-        <div className="bg-boxclr rounded-md h-1/2 shadow-md p-3 sm:p-6 flex flex-col justify-between gap-2">
+    <div className={` col-span-4 flex flex-col justify-between  w-full row-span-3 gap-4 `}>
+        <div className="bg-boxclr rounded-md h-2/3 shadow-md p-3 sm:p-6 flex flex-col justify-between gap-2">
             <p className="text-sm font-semibold">Vehicles overview</p>
             <div className="flex flex-wrap md:flex-nowrap justify-around w-full rounded-md overflow-hidden ">
                 <OverviewItem item="Checking in"  color={"bg-blue-600/10"} percentage={statusPerc.checkingIn} />
@@ -23,7 +23,7 @@ export default function VehicleOverview() {
 
         </div>
       
-        <div className=" w-full h-1/2 flex sm:gap-4 gap-2">
+        <div className=" w-full h-1/3 flex sm:gap-4 gap-2">
             {intransitVehicleList.map(([name,count])=>{
             if (name == "null" || name == "undefined"){
                 return

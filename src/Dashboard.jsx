@@ -26,7 +26,7 @@ export default function Dashboard() {
         <p className="md:text-lg font-semibold text-sm">DashBoard</p>
       </div> */}
 
-      <div className="xl:grid-cols-8 auto-cols-fr auto-rows-fr gap-4 grid-rows-3 flex flex-col md:grid w-full mb-32 md:mb-0">
+      <div className="xl:grid-cols-8 auto-cols-fr auto-rows-[120px] gap-4 flex flex-col md:grid w-full mb-32 md:mb-0">
         
         {/* On route vehicles */}
         <Suspense fallback={<StatusLazy/>} >
