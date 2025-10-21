@@ -20,7 +20,7 @@ export default function OrderByCountries() {
             <div className=" shadow-md text-sm sticky top-0 flex my-4 mb-0 justify-around">
                 {tabs.map((item,index)=>{
                     return(
-                        <div onClick={() => setCountriesTabIndex(item.key)} key={index} className={`${countriesTabIndex === item.key ? "bg-primary text-background" : "bg-background"} py-3 cursor-pointer text-base ${index==0?"rounded-l-md":index==tabs.length-1?"rounded-r-md":"rounded-none" } text-center w-full h-full`}>
+                        <div onClick={() => setCountriesTabIndex(item.key)} key={index} className={`${countriesTabIndex === item.key ? "bg-primary text-background" : "bg-background"} py-2 cursor-pointer text-base ${index==0?"rounded-l-md":index==tabs.length-1?"rounded-r-md":"rounded-none" } text-center w-full h-full`}>
                         <p>{item.name}</p>
                     </div>
                     )

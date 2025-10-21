@@ -52,14 +52,6 @@ export default function Dashboard() {
           <VehicleOverview/>
         </Suspense>
 
-        <Suspense fallback={<MonthlyShipmentLazy/>}>
-          <MonthlyShipment />
-        </Suspense>
-
-        <Suspense fallback={<TimelineLazy/>}>
-          <DeliveryTimeline />
-        </Suspense>
-
         <Suspense fallback={<TotalDistanceLazy/>}>
           <TotalDistanceCard/>
         </Suspense>
@@ -67,6 +59,20 @@ export default function Dashboard() {
         <Suspense fallback={<OrderByCountryLazy/>}>
           <OrderByCountries />
         </Suspense>
+
+        <Suspense fallback={<MonthlyShipmentLazy/>}>
+          <MonthlyShipment />
+        </Suspense>
+
+        
+
+        <Suspense fallback={<TimelineLazy/>}>
+          <DeliveryTimeline />
+        </Suspense>
+
+        
+
+        
 
       </div>
     </div>

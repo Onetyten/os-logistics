@@ -36,7 +36,7 @@ const OrderItem = ({ order, selectedOrder }) => {
         "In Storage": "bg-blue-600/50 text-white",
         "Cancelled": "bg-[#fc655f] text-background",
         "New": "bg-[#db528b] text-white",
-        "Checking In": "bg-[#fffc44] text-background",
+        "Checking In": "bg-[#966c7d] text-white",
         "Unloading": "bg-[#75768c] text-white"
       };
 

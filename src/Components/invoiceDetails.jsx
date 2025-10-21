@@ -15,14 +15,14 @@ export default function InvoiceDetails({selectedOrder}) {
             <p className="text-lg text-primary font-bold">Details</p>
           </div>
           <div className="w-full grid grid-cols-3 shadow-md text-base ">
-              <div  onClick={() => setInfoTabIndex(1)} className={`${InfoTabIndex == 1 ? "bg-primary" : "bg-background"} rounded-l-md cursor-pointer flex items-center justify-center py-3 text-center w-full h-full`} >
+              <div  onClick={() => setInfoTabIndex(1)} className={`${InfoTabIndex == 1 ? "bg-primary" : "bg-background"} rounded-l-md cursor-pointer flex items-center justify-center py-2 text-center w-full h-full`} >
                 <p>Package <span className="hidden sm:inline">details</span> </p>
               </div>
-              <div  onClick={() => setInfoTabIndex(2)} className={`${InfoTabIndex == 2 ? "bg-primary" : "bg-background"} cursor-pointer  flex items-center justify-center py-3 text-center w-full h-full`}
+              <div  onClick={() => setInfoTabIndex(2)} className={`${InfoTabIndex == 2 ? "bg-primary" : "bg-background"} cursor-pointer  flex items-center justify-center py-2 text-center w-full h-full`}
               >
                 <p>Sender <span className="hidden sm:inline">information</span></p>
               </div>
-              <div onClick={() => setInfoTabIndex(3)} className={`${InfoTabIndex == 3 ? "bg-primary" : "bg-background"} rounded-r-md cursor-pointer  flex items-center justify-center py-3 text-center w-full h-full`}>
+              <div onClick={() => setInfoTabIndex(3)} className={`${InfoTabIndex == 3 ? "bg-primary" : "bg-background"} rounded-r-md cursor-pointer  flex items-center justify-center py-2 text-center w-full h-full`}>
                 <p>Receiver <span className="hidden sm:inline">Information</span></p>
               </div>
           </div>
