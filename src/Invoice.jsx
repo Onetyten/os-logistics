@@ -30,37 +30,27 @@ export default function Invoice() {
 
 
   return (
-    <div className="w-full xl:h-screen mb-8 flex gap-10 xl:gap-2 justify-around flex-col xl:flex-row items-center">
-
-        
-<OverlayScrollbarsComponent
-  options={{ scrollbars: { theme: "os-theme-dark", autoHide: "never" } }}
-  ref={containerRef}
-  className="flex-1 pr-2.5 xl:h-full xl:max-h-full shadow-md w-full xl:shadow-none"
->
-  <div className="h-full w-full">
-    <AutoSizer>
-      {({ height, width }) => (
-        <List height={height} width={width} itemSize={210} itemCount={shipmentData.length} className="flex-1 hide-scrollbar w-full">
-          {({ index, style }) => {
-            const order = shipmentData[index];
-            return (
-              <div style={style} className="flex flex-col gap-4">
-                <Suspense key={index} fallback={<OrderItemLoader />}>
-                  <OrderItem order={order} selectedOrder={selectedOrder} />
-                </Suspense>
-              </div>
-            );
-          }}
-        </List>
-      )}
-    </AutoSizer>
-  </div>
-</OverlayScrollbarsComponent>
-
-
-
-
+    <div className="w-full h-dvh mb-8 flex xl:gap-10 gap-4 justify-around flex-col xl:flex-row items-center"> 
+      <OverlayScrollbarsComponent options={{ scrollbars: { theme: "os-theme-dark", autoHide: "never" } }}  className="flex-1 xl:h-full xl:max-h-full shadow-md w-full xl:shadow-none xl:border-0 p-3 xl:p-0 border-primary border-2">
+        <div className="h-full w-full">
+          <AutoSizer>
+            {({ height, width }) => (
+              <List height={height} width={width} itemSize={190} itemCount={shipmentData.length} ref={containerRef} className="flex-1 hide-scrollbar w-full">
+                {({ index, style }) => {
+                  const order = shipmentData[index];
+                  return (
+                    <div style={style} className="flex flex-col gap-1 sm:gap-4">
+                      <Suspense key={index} fallback={<OrderItemLoader />}>
+                        <OrderItem order={order} selectedOrder={selectedOrder} />
+                      </Suspense>
+                    </div>
+                  );
+                }}
+              </List>
+            )}
+          </AutoSizer>
+        </div>
+      </OverlayScrollbarsComponent>
 
 
     <OverlayScrollbarsComponent options={{ scrollbars: { theme: "os-theme-dark", autoHide:'never' }}} className=" md:text-sm text-xs gap-4 flex-1 w-full h-full flex flex-col items-center justify-start">

@@ -2,7 +2,7 @@ import SpotlightBorder from "../SpotlightBorder";
 
 export default function OverviewLazy() {
   return (
-    <div className={` col-span-4 flex flex-col justify-between  w-full row-span-3 gap-2 `}>
+    <div className={`col-span-4 flex flex-col sm:justify-between  w-full sm:h-full xl:row-span-3 lg:row-span-4 sm:row-span-7 row-span-10 gap-2`}>
         <SpotlightBorder className="rounded-md w-full h-2/3 shadow-md p-3 sm:p-6 flex flex-col justify-between items-center gap-2">
             <div className="w-full flex-1 my-6 bg-background rounded-md overflow-hidden ">
             </div>

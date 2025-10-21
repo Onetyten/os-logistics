@@ -2,7 +2,7 @@ import SpotlightBorder from "../SpotlightBorder"
 
 export default function OrderByCountryLazy() {
   return (
-        <SpotlightBorder className="bg-boxclr rounded-md flex justify-center items-center flex-col gap-2 row-span-3 w-full overflow-hidden relative col-span-2 p-3 xl:col-span-2 shadow-md">
+        <SpotlightBorder className="bg-boxclr rounded-md row-span-3 w-full overflow-hidden lg:h-auto relative p-3 lg:col-span-2 col-span-4 xl:col-span-4 2xl:col-span-2 shadow-md">
 
             <div className=" h-12 w-9/10 bg-background shadow-md text-sm sticky top-0 flex my-4 mb-0 justify-around">
 

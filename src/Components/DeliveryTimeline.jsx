@@ -8,8 +8,8 @@ export default function DeliveryTimeline() {
     const {deliveryDays} = useShipmentAnalysis()
     const cardinal = curveCardinal.tension(0.2);
   return (
-    <SpotlightBorder className={`bg-boxclr rounded-md w-full row-span-3 h-[400px] sm:h-auto text-xs p-3 sm:p-6 col-span-4 shadow-md`}>
-        <p className="text-lg text-primary font-semibold mb-8">Delivery duration over time</p>
+    <SpotlightBorder className={`bg-boxclr rounded-md w-full row-span-2 sm:row-span-3 text-xs p-3 sm:p-6 2xl:col-span-4 xl:col-span-full col-span-4 shadow-md`}>
+        <p className="text-base capitalize text-primary font-semibold mb-8">Delivery duration over time</p>
         
         <ResponsiveContainer width="100%" height="90%">
         <AreaChart data={deliveryDays} margin={{ top: 10, right: 0, left: -40, bottom: 10 }}>

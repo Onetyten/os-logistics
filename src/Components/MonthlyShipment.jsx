@@ -10,8 +10,8 @@ export default function MonthlyShipment() {
     // const to = dailyshipmentChart[dailyshipmentChart.length - 1].day;
 
     return (
-        <SpotlightBorder className="bg-boxclr rounded-md 2xl:col-span-4 col-span-4 lg:col-span-2 w-full row-span-3 p-3 sm:p-6 overflow-hidden shadow-md">
-            <p className="text-lg text-primary font-semibold mb-8">Monthly shipment</p>
+        <SpotlightBorder className="bg-boxclr rounded-md lg:col-span-2 xl:col-span-4 col-span-4 w-full row-span-2 sm:row-span-3 p-3 sm:p-6 overflow-hidden shadow-md">
+            <p className="text-base text-primary font-semibold mb-8">Monthly Shipment</p>
             <div className='flex flex-col justify-center  h-full'>
              
               <div className='mb-20 text-muted'>

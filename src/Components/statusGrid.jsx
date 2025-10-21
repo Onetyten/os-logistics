@@ -5,12 +5,12 @@ export default function StatusGrid(prop) {
   const {count,percentage,message,icon} = prop
   
   return (
-    <SpotlightBorder className="bg-boxclr flex flex-col gap-2 rounded-md col-span-2 p-3 sm:p-6 justify-between shadow-md">
+    <SpotlightBorder className="bg-boxclr flex flex-col gap-2 rounded-md col-span-4 lg:col-span-2 p-3 sm:p-6 justify-between shadow-md">
         <div className="flex items-center gap-2">
           <div className={`p-2 text-primary rounded-md bg-primary/20`}>
               {icon}
           </div>
-          <TextScramble className="font-semibold text-xl text-primary" texts={[`${count}`]} nextLetterSpeed={50} letterSpeed={30}/>
+          <TextScramble className="font-semibold text-lg text-primary" texts={[`${count}`]} nextLetterSpeed={50} letterSpeed={30}/>
           
         </div>
         <div className="text-muted flex gap-2 w-f text-sm">

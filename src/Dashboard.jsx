@@ -21,7 +21,7 @@ export default function Dashboard() {
   const {shipmentStatusCount,shipmentStatusPercentage} = useShipmentAnalysis()
   return (
     <div className="flex flex-col gap-6">
-      <div className="2xl:grid-cols-8 auto-cols-fr auto-rows-[120px] gap-2 flex flex-col md:grid w-full mb-32 md:mb-0">
+      <div className="xl:grid-cols-8 sm:grid-cols-4 grid-cols-2 auto-cols-fr auto-rows-[100px] sm:auto-rows-[120px] gap-2 grid w-full mb-32 md:mb-0">
         
         <Suspense fallback={<StatusLazy/>} >
           <StatusGrid icon={<FontAwesomeIcon icon={faTruck} />} message="of shipments are on route" color={"text-blue-500"} bgcolor={"bg-blue-500/50"} count={shipmentStatusCount.inTransit+shipmentStatusCount.loading+shipmentStatusCount.checkingIn+shipmentStatusCount.unloading} percentage={shipmentStatusPercentage.inTransit+shipmentStatusPercentage.loading+shipmentStatusPercentage.checkingIn+shipmentStatusPercentage.unloading}/>

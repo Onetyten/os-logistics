@@ -18,7 +18,7 @@ function App() {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <Router>
-            <div className="flex bg-background text-white font-console items-center w-screen min-h-screen overflow-hidden relative">
+            <div className="flex bg-background text-white font-console items-center w-screen min-h-dvh overflow-hidden relative">
               <Sidebar pages = {pages} setPages = {setPages} />
               <div className="flex flex-col flex-1 p-4 sm:p-8  overflow-y-scroll justify-start items-center h-dvh ">
                 <div className="flex flex-col w-full gap-6 ">

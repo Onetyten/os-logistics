@@ -55,7 +55,7 @@ const OrderItem = ({ order, selectedOrder }) => {
     const selected = selectedOrder?.package_information.package_id === order?.package_information.package_id
   
   return (
-    <SpotlightBorder className="h-[200px]">
+    <SpotlightBorder className="h-[180px]">
         <div ref={itemRef} className={` ${ selected? "text-primary bg-primary/10  bg-center bg-contain" : ""} w-full h-full flex flex-col gap-4 rounded-md shadow-md p-4 cursor-pointer`} onClick={() =>{ 
           dispatch(setSelectedOrder(order))
           dispatch(setScrollFalse())

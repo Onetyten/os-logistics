@@ -14,13 +14,13 @@ export default function OrderByCountries() {
     ]
 
     return (
-        <SpotlightBorder className="bg-boxclr rounded-md row-span-3 w-full overflow-hidden lg:h-auto   relative p-3 2xl:col-span-4 col-span-4 lg:col-span-2 shadow-md">
-            <p className="text-lg text-primary font-semibold">Orders by countries</p>
+        <SpotlightBorder className="bg-boxclr rounded-md row-span-3 w-full overflow-hidden lg:h-auto relative p-3 lg:col-span-2 col-span-4 xl:col-span-4 2xl:col-span-2 shadow-md">
+            <p className="text-base text-primary font-semibold">Orders By Countries</p>
 
             <div className=" shadow-md text-sm sticky top-0 flex my-4 mb-0 justify-around">
                 {tabs.map((item,index)=>{
                     return(
-                        <div onClick={() => setCountriesTabIndex(item.key)} key={index} className={`${countriesTabIndex === item.key ? "bg-primary text-background" : "bg-background"} py-2 cursor-pointer text-base ${index==0?"rounded-l-md":index==tabs.length-1?"rounded-r-md":"rounded-none" } text-center w-full h-full`}>
+                        <div onClick={() => setCountriesTabIndex(item.key)} key={index} className={`${countriesTabIndex === item.key ? "bg-primary text-background" : "bg-background"} py-2 cursor-pointer text-sm ${index==0?"rounded-l-md":index==tabs.length-1?"rounded-r-md":"rounded-none" } text-center w-full h-full`}>
                         <p>{item.name}</p>
                     </div>
                     )
