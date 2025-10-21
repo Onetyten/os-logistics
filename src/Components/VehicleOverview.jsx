@@ -7,7 +7,7 @@ export default function VehicleOverview() {
     
 
   return (
-    <div className={` col-span-4 flex flex-col justify-between  w-full row-span-3 gap-4 `}>
+    <div className={` col-span-4 flex flex-col justify-between  w-full row-span-3 gap-2 `}>
         <SpotlightBorder className="rounded-md h-2/3 shadow-md p-3 sm:p-6 flex flex-col justify-between gap-2">
             <p className="text-lg text-primary font-semibold">Vehicles overview</p>
             <div className="flex flex-wrap md:flex-nowrap justify-around w-full rounded-md overflow-hidden ">

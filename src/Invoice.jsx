@@ -31,9 +31,9 @@ export default function Invoice() {
   return (
     <div className="w-full xl:h-screen mb-8 flex gap-10 xl:gap-4 justify-around flex-col xl:flex-row items-center">
    
-      <OverlayScrollbarsComponent options={{ scrollbars: { theme: "os-theme-dark", autoHide:'never'}}} ref={containerRef} className="flex-1 xl:h-full max-h-[500px] xl:max-h-full shadow-md w-full xl:shadow-none">      
+      <OverlayScrollbarsComponent options={{ scrollbars: { theme: "os-theme-dark", autoHide:'never'}}} ref={containerRef} className="flex-1 pr-3.5 xl:h-full max-h-[500px] xl:max-h-full shadow-md w-full xl:shadow-none">      
         <div className="flex flex-col gap-4">
-          {shipmentData.map((order, index) => (
+          {shipmentData.slice(0,10).map((order, index) => (
             <Suspense key={index} fallback={<OrderItemLoader />}>
               <OrderItem order={order} selectedOrder={selectedOrder} />
             </Suspense>
@@ -47,11 +47,7 @@ export default function Invoice() {
     <OverlayScrollbarsComponent options={{ scrollbars: { theme: "os-theme-dark", autoHide:'never' }}} className=" md:text-sm text-xs gap-4 flex-1 w-full h-full flex flex-col items-center justify-start">
           <div className="h-full w-full flex  flex-col gap-4">
               <OrderMap selectedOrder={selectedOrder}/>
-      
-                <div className="w-full">
-                  <p className="text-sm font-bold">Details</p>
-                </div>
-            
+                
               <InvoiceDetails selectedOrder={selectedOrder}/>
           </div>
     </OverlayScrollbarsComponent>

@@ -22,10 +22,6 @@ export default function Dashboard() {
   const {shipmentStatusCount,shipmentStatusPercentage} = useShipmentAnalysis()
   return (
     <div className="flex flex-col gap-6">
-      {/* <div className="">
-        <p className="md:text-lg font-semibold text-sm">DashBoard</p>
-      </div> */}
-
       <div className="xl:grid-cols-8 auto-cols-fr auto-rows-[120px] gap-2 flex flex-col md:grid w-full mb-32 md:mb-0">
         
         {/* On route vehicles */}

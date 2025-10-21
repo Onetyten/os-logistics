@@ -9,7 +9,7 @@ export default function StatusGrid(prop) {
         <div className={`p-2 text-primary rounded-md bg-primary/20`}>
             {icon}
         </div>
-        <p className="font-semibold text-primary">{count}</p>
+        <p className="font-semibold text-xl text-primary">{count}</p>
         </div>
         <p className="text-muted text-sm">
         <span className="font-semibold text-primary">{percentage}%</span> {message}

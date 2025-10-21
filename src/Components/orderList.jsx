@@ -31,7 +31,7 @@ export default function OrderList({Orders }) {
                             <FontAwesomeIcon icon={faCheckCircle} />
                         </div>
                         <div>
-                            <p className="text-primary">SENDER</p>
+                            <p className="text-primary text-base">SENDER</p>
                             <p>{item.origin.country}</p>
                             <p>{item.origin.state}</p>
                         </div>
@@ -46,7 +46,7 @@ export default function OrderList({Orders }) {
                             <FontAwesomeIcon icon={faCheckCircle} />
                         </div>
                         <div>
-                            <p className="text-primary">RECEIVER</p>
+                            <p className="text-primary text-base">RECEIVER</p>
                             <p>{item.destination.country}</p>
                             <p>{item.destination.state}</p>
                         </div>

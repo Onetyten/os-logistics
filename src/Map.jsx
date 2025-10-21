@@ -25,12 +25,8 @@ export default function MapView() {
   return (
     <SpotlightBorder className="w-full z-10 h-[88vh] border-4 border-border-muted flex justify-center overflow-hidden items-center">
       <Suspense fallback={<div className="bg-textclr2 h-full w-full"></div>}>
-          <MapContainer center={center} zoom={5} minZoom={4} maxZoom={15}  style={{ height: "100%", width: "100%" }}>
-            <TileLayer
-              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
-              attribution="Tiles &copy; Esri"
-              maxZoom={19}
-            />
+          <MapContainer maxBoundsViscosity={1.0} maxBounds={[[ -90, -180 ],[ 90, 180 ]]} center={center} zoom={5} minZoom={4} maxZoom={15}  style={{ height: "100%", width: "100%" }}>
+            <TileLayer noWrap={false} url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}" attribution="Tiles &copy; Esri" maxZoom={19}/>
 
 
             {shipmentData.map((shipment, index) => {

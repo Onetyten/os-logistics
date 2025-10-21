@@ -78,17 +78,15 @@ html{
 }
 
 .os-scrollbar-vertical > .os-scrollbar-track > .os-scrollbar-handle {
-  background-color: #1b54fe59;
-  border-radius: 3px;
+  background-color: #3ECF8E;
+  border-radius: 0px;
   width: 12px;
-  border: 1px solid white;
 }
 
 .os-scrollbar-vertical:hover > .os-scrollbar-track > .os-scrollbar-handle {
-  background-color: #1b54fe59;
-  border-radius: 3px;
-  width: 15px;
-  border: 1px solid white;
+  background-color: #3ECF8E;
+  border-radius: 0px;
+  width: 14px;
 }
 
 

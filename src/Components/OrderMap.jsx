@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { MapContainer, TileLayer, Polyline, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import SpotlightBorder from "./SpotlightBorder";
 
 const originIcon = new L.Icon({
   iconUrl: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
@@ -21,18 +22,8 @@ const DEFAULT_ZOOM = 6;
 
 export default function OrderMap({ selectedOrder }) {
   const isValidCoordinate = (lat, lng) => {
-    return (
-      typeof lat === 'number' && 
-      typeof lng === 'number' && 
-      !isNaN(lat) && 
-      !isNaN(lng) &&
-      lat >= -90 && 
-      lat <= 90 && 
-      lng >= -180 && 
-      lng <= 180
-    );
-  };
-
+    return ( typeof lat === 'number' && typeof lng === 'number' && !isNaN(lat) && !isNaN(lng) &&lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180)
+  }
   const origin = useMemo(() => {
     const lat = selectedOrder?.origin?.latitude;
     const lng = selectedOrder?.origin?.longitude;
@@ -45,7 +36,6 @@ export default function OrderMap({ selectedOrder }) {
   const destination = useMemo(() => {
     const lat = selectedOrder?.destination?.latitude;
     const lng = selectedOrder?.destination?.longitude;
-    
     if (isValidCoordinate(lat, lng)) {
       return { lat, lng };
     }
@@ -97,6 +87,8 @@ export default function OrderMap({ selectedOrder }) {
         }
       }
     }, [positions, map]);
+
+    
     
     return null;
   }
@@ -120,13 +112,9 @@ export default function OrderMap({ selectedOrder }) {
   }
 
   return (
-    <div className="w-full z-0 rounded-xl shadow-md overflow-hidden min-h-64 2xl:min-h-96 flex-1 bg-boxclr">
-      <MapContainer  center={mapCenter}  zoom={mapZoom}  scrollWheelZoom={true}  minZoom={1}  maxZoom={15}  style={{ height: "100%", width: "100%" }} key={`${selectedOrder?.id || 'default'}-${origin?.lat || 0}-${destination?.lat || 0}`}>
-        <TileLayer
-          url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
-          attribution="Tiles &copy; Esri"
-          maxZoom={19}
-        />
+    <SpotlightBorder className="w-full border-4 border-border-muted z-0 rounded-xl shadow-md overflow-hidden min-h-64 2xl:min-h-96 flex-1 bg-boxclr">
+      <MapContainer   maxBounds={[[ -90, -180 ],[ 90, 180 ]]} maxBoundsViscosity={1.0} center={mapCenter}  zoom={mapZoom}  scrollWheelZoom={true}  minZoom={1}  maxZoom={15}  style={{ height: "100%", width: "100%" }} key={`${selectedOrder?.id || 'default'}-${origin?.lat || 0}-${destination?.lat || 0}`}>
+        <TileLayer noWrap={false} url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}" attribution="Tiles &copy; Esri" maxZoom={19}/>
         
         {routeCoords.length > 0 && (
           <>
@@ -151,7 +139,7 @@ export default function OrderMap({ selectedOrder }) {
           </Marker>
         )}
       </MapContainer>
-    </div>
+    </SpotlightBorder>
   );
 }
 

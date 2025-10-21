@@ -5,7 +5,7 @@ import DetailListItem from "./detailListItem";
 
 export default function ReceiverInformation({selectedOrder}) {
   return (
-    <div className="flex flex-col h-72 p-3 overflow-y-scroll justify-start w-full items-center">
+    <div className="flex flex-col h-72 p-3 overflow-y-auto hide-scrollbar justify-start w-full items-center">
         <div className="flex-1 justify-start w-full p-3 gap-4 flex flex-col">
           <DetailListItem name="receiver id" info= {selectedOrder?.receiver_information.receiver_id} />
           <DetailListItem name="Name" info= {selectedOrder?.receiver_information.name} />

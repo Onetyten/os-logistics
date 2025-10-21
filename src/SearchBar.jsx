@@ -17,7 +17,6 @@ export default function SearchBar() {
   const [filterBy, setFilterBy] = useState(filterArr[0])
   const [showOption,setShowOptions] = useState(false)
   const { shipmentData } = useShipmentAnalysis()
-
   const filteredShipments = shipmentData?.filter((item) => {
     const name = item.package_information?.package_name?.toLowerCase()
     const country = item.origin?.country?.toLowerCase()
@@ -80,9 +79,9 @@ export default function SearchBar() {
 
 
       {searchText.trim() !== "" && (
-        <div className='h-72 bg-box absolute w-full z-50 border-primary border border-t-0 rounded-b-md shadow-md top-16 overflow-y-scroll'>
+        <div className='h- bg-box absolute w-full z-50 border-primary border border-t-0 rounded-b-md shadow-md top-16'>
           {filteredShipments.length > 0 ? (
-            <List height={288} width={"100%"} itemSize={70} itemCount={filteredShipments.length}>
+            <List height={300} width={"100%"} itemSize={80} itemCount={filteredShipments.length} className='hide-scrollbar'>
               {({ index, style }) => {
                 const item = filteredShipments[index];
                 return (
@@ -96,10 +95,10 @@ export default function SearchBar() {
                     <p className="text-sm font-bold text-white text-textclr">
                       {item.package_information.package_name}
                     </p>
-                    <p className="text-xs">
+                    <p className="text-[15px]">
                       {item.origin.country} → {item.destination.country}
                     </p>
-                    <p className="text-xs">
+                    <p className="text-[15px]">
                       ID: {item.package_information.package_id}
                     </p>
                   </Link>
@@ -107,10 +106,12 @@ export default function SearchBar() {
               }}
             </List>
           ) : (
-            <p className="text-center text-sm text-muted mt-4">No matching results</p>
+            <p className="text-center text-sm h-72 text-muted mt-4">No matching results</p>
           )}
         </div>
       )}
+
+
     </div>
   </OutsideClickHandler>
   );
