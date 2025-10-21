@@ -5,17 +5,18 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import SpotlightBorder from "./SpotlightBorder";
 
-const originIcon = new L.Icon({
-  iconUrl: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
+const Pin = (color = "#60a5fa") => L.divIcon({
+  html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+           <path fill="${color}" d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7z"/>
+         </svg>`,
+  className: "",
+  iconSize: [24, 24],
+  iconAnchor: [12, 24],
 });
+const originIcon = Pin("#3ECF8E");      
+const destinationIcon = Pin("#f87171");
 
-const destinationIcon = new L.Icon({
-  iconUrl: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-});
+
 
 const DEFAULT_CENTER = { lat: 20, lng: 0 };
 const DEFAULT_ZOOM = 6;
@@ -114,11 +115,11 @@ export default function OrderMap({ selectedOrder }) {
   return (
     <SpotlightBorder className="w-full border-4 border-border-muted z-0 rounded-xl shadow-md overflow-hidden min-h-64 2xl:min-h-96 flex-1 bg-boxclr">
       <MapContainer   maxBounds={[[ -90, -180 ],[ 90, 180 ]]} maxBoundsViscosity={1.0} center={mapCenter}  zoom={mapZoom}  scrollWheelZoom={true}  minZoom={1}  maxZoom={15}  style={{ height: "100%", width: "100%" }} key={`${selectedOrder?.id || 'default'}-${origin?.lat || 0}-${destination?.lat || 0}`}>
-        <TileLayer noWrap={false} url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}" attribution="Tiles &copy; Esri" maxZoom={19}/>
+       <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}" attribution="Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ" maxZoom={16} />
         
         {routeCoords.length > 0 && (
           <>
-            <Polyline  positions={routeCoords}  pathOptions={{ color: "#1b54fe", weight: 3, opacity: 0.8 }} />
+            <Polyline  positions={routeCoords}  pathOptions={{ color: "#3ECF8E", weight: 3, opacity: 0.8 }} />
             <FitBounds positions={routeCoords} />
           </>
         )}

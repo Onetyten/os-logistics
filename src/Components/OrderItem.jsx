@@ -57,7 +57,7 @@ const OrderItem = ({ order, selectedOrder }) => {
   return (
     <SpotlightBorder>
         <div ref={itemRef}
-        className={` ${ selected? "text-primary bg-primary/10 bg-[url('/pattern.webp')] bg-center bg-contain" : ""} rounded-xl shadow-md p-4 cursor-pointer`} onClick={() =>{ 
+        className={` ${ selected? "text-primary bg-primary/10  bg-center bg-contain" : ""} rounded-xl shadow-md p-4 cursor-pointer`} onClick={() =>{ 
           dispatch(setSelectedOrder(order))
           dispatch(setScrollFalse())
         }}>
@@ -84,7 +84,7 @@ const OrderItem = ({ order, selectedOrder }) => {
         <div className="mt-4">
           <div className="mt-2 space-y-2">
             {order.updates.map((update, idx) => (
-              <div key={idx} className="flex justify-between items-center py-2 rounded-md">
+              <div key={idx} className="flex justify-between items-center text-muted py-2 rounded-md">
                 <p className="text-sm font-medium">{update.state}</p>
                 <p className={`text-sm ${selected ? "text-boxclr" : "text-textclr2"} `}>
                   {new Date(update.timeline).toLocaleString()}
