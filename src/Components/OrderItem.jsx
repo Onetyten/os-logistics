@@ -29,15 +29,15 @@ const OrderItem = ({ order, selectedOrder }) => {
     }
     
       const statusColors = {
-        "Delivered": "bg-primary text-white",
-        "In Transit": "bg-[#a2b18a] text-white",
-        "Loading": "bg-[#f9a057] text-background",
-        "Delayed": "bg-[#feab00] text-background",
-        "In Storage": "bg-blue-600/50 text-white",
-        "Cancelled": "bg-[#fc655f] text-background",
-        "New": "bg-[#db528b] text-white",
-        "Checking In": "bg-[#966c7d] text-white",
-        "Unloading": "bg-[#75768c] text-white"
+        "Delivered": "bg-primary/50",
+        "In Transit": "bg-[#a2b18a]/50",
+        "Loading": "bg-[#f9a057]/50",
+        "Delayed": "bg-[#feab00]/50",
+        "In Storage": "bg-blue-600/50",
+        "Cancelled": "bg-[#fc655f]/50",
+        "New": "bg-[#db528b]/50",
+        "Checking In": "bg-[#966c7d]/50",
+        "Unloading": "bg-[#75768c]/50"
       };
 
     const statusProgress = {
@@ -55,9 +55,9 @@ const OrderItem = ({ order, selectedOrder }) => {
     const selected = selectedOrder?.package_information.package_id === order?.package_information.package_id
   
   return (
-    <SpotlightBorder>
+    <SpotlightBorder className="h-[240px]">
         <div ref={itemRef}
-        className={` ${ selected? "text-primary bg-primary/10  bg-center bg-contain" : ""} rounded-xl shadow-md p-4 cursor-pointer`} onClick={() =>{ 
+        className={` ${ selected? "text-primary bg-primary/10  bg-center bg-contain" : ""} w-full h-full rounded-xl shadow-md p-4 cursor-pointer`} onClick={() =>{ 
           dispatch(setSelectedOrder(order))
           dispatch(setScrollFalse())
         }}>
@@ -67,7 +67,7 @@ const OrderItem = ({ order, selectedOrder }) => {
             ORDER ID: #{order.package_information.package_id}
           </p>
           <div
-            className={`text-center shadow-md md:w-24 md:p-2 p-1 ${statusColors[order.status] || "bg-textclr2 "}`}>
+            className={`text-center shadow-md md:w-24 md:p-2 p-1 text-white ${statusColors[order.status] || "bg-textclr2 "}`}>
             <p className="md:text-sm text-xs font-bold">{order.status}</p>
           </div>
         </div>
@@ -83,7 +83,7 @@ const OrderItem = ({ order, selectedOrder }) => {
 
         <div className="mt-4">
           <div className="mt-2 space-y-2">
-            {order.updates.map((update, idx) => (
+            {order.updates.slice(order.updates.length-3,order.updates.length).map((update, idx) => (
               <div key={idx} className="flex justify-between items-center text-muted py-2 rounded-md">
                 <p className="text-sm font-medium">{update.state}</p>
                 <p className={`text-sm ${selected ? "text-boxclr" : "text-textclr2"} `}>
