@@ -30,7 +30,7 @@ export default function Invoice() {
 
 
   return (
-    <div className="w-full h-dvh mb-8 flex xl:gap-10 gap-4 justify-around flex-col xl:flex-row items-center"> 
+    <div className="w-full h-dvh mb-8 flex gap-4 justify-around flex-col xl:flex-row items-center"> 
       <OverlayScrollbarsComponent options={{ scrollbars: { theme: "os-theme-dark", autoHide: "never" } }}  className="flex-1 xl:h-full xl:max-h-full shadow-md w-full xl:shadow-none xl:border-0 p-3 xl:p-0 border-primary border-2">
         <div className="h-full w-full">
           <AutoSizer>
