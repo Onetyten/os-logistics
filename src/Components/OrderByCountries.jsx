@@ -14,7 +14,7 @@ export default function OrderByCountries() {
     ]
 
     return (
-        <SpotlightBorder className="bg-boxclr rounded-md row-span-3 w-full overflow-hidden relative col-span-2 p-3 xl:col-span-2 shadow-md">
+        <SpotlightBorder className="bg-boxclr rounded-md row-span-3 w-full overflow-hidden lg:h-auto   relative p-3 2xl:col-span-4 col-span-4 lg:col-span-2 shadow-md">
             <p className="text-lg text-primary font-semibold">Orders by countries</p>
 
             <div className=" shadow-md text-sm sticky top-0 flex my-4 mb-0 justify-around">

@@ -89,12 +89,22 @@ export const useShipmentAnalysis=() => {
       return shipmentData.map((item)=>item.updates[0]?.timeline)
     },[shipmentData])
 
-    const totalRevenue = useMemo(()=>{
+    const TotalbaseShippingFee = useMemo(()=>{
       return shipmentData.reduce((sum,delta)=>{
        return sum+=delta.payment_information.base_shipping_fee
       },0)
     },[shipmentData])
-
+    const TotalInsuranceFee = useMemo(()=>{
+      return shipmentData.reduce((sum,delta)=>{
+       return sum+=delta.payment_information.insurance_fee
+      },0)
+    },[shipmentData])
+    const TotalTaxes = useMemo(()=>{
+      return shipmentData.reduce((sum,delta)=>{
+       return sum+=delta.payment_information.taxes
+      },0)
+    },[shipmentData])
+    
     const dailyShipmentCount = useMemo(()=>{
       return dailyShipments.reduce((acc,item)=>{
         acc[item] = (acc[item]||0)+1
@@ -121,5 +131,5 @@ export const useShipmentAnalysis=() => {
         
 
 
-  return {shipmentData,TotalSize,shipmentStatusCount,shipmentStatusPercentage,intransitVehicleList,totalDistance,newOrders,preparingOrders,shippingOrders,dailyshipmentChart,deliveryDays,totalRevenue}
+  return {shipmentData,TotalSize,shipmentStatusCount,shipmentStatusPercentage,intransitVehicleList,totalDistance,newOrders,preparingOrders,shippingOrders,dailyshipmentChart,deliveryDays,TotalbaseShippingFee,TotalInsuranceFee,TotalTaxes}
 }

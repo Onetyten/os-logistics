@@ -1,9 +1,11 @@
+import SpotlightBorder from "../SpotlightBorder";
 
 export default function MonthlyShipmentLazy() {
   return (
-   <div className={`bg-boxclr h-96  rounded-md col-span-4 w-full min-h-32 p-6 flex gap-5 flex-col row-span-2 shadow-md`}>
-        <div className="bg-bkground w-[30%] h-12"></div>
-        <div className="bg-bkground w-full flex-1"></div>
-    </div>
+        <SpotlightBorder className="bg-boxclr rounded-md col-span-4 w-full row-span-3 p-3 sm:p-6 overflow-hidden shadow-md">
+            <div className="w-9/10 h-8/10 bg-background">
+
+            </div>
+        </SpotlightBorder>
   )
 }

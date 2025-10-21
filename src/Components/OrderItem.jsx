@@ -55,13 +55,11 @@ const OrderItem = ({ order, selectedOrder }) => {
     const selected = selectedOrder?.package_information.package_id === order?.package_information.package_id
   
   return (
-    <SpotlightBorder className="h-[240px]">
-        <div ref={itemRef}
-        className={` ${ selected? "text-primary bg-primary/10  bg-center bg-contain" : ""} w-full h-full rounded-xl shadow-md p-4 cursor-pointer`} onClick={() =>{ 
+    <SpotlightBorder className="h-[200px]">
+        <div ref={itemRef} className={` ${ selected? "text-primary bg-primary/10  bg-center bg-contain" : ""} w-full h-full flex flex-col gap-4 rounded-md shadow-md p-4 cursor-pointer`} onClick={() =>{ 
           dispatch(setSelectedOrder(order))
           dispatch(setScrollFalse())
         }}>
-        {/* Order Header */}
         <div className="flex justify-between items-center">
           <p className="text-base font-semibold">
             ORDER ID: #{order.package_information.package_id}
@@ -72,8 +70,8 @@ const OrderItem = ({ order, selectedOrder }) => {
           </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className="w-full flex h-2 mt-3 shadow-md bg-primary/30 rounded-3xl">
+
+        <div className="w-full flex h-2 shadow-md bg-primary/30 rounded-3xl">
           <div
             className={`bg-primary h-full rounded-3xl transition-all duration-500 ${
               statusProgress[order.status] || "w-[10%]"
@@ -81,18 +79,17 @@ const OrderItem = ({ order, selectedOrder }) => {
           ></div>
         </div>
 
-        <div className="mt-4">
-          <div className="mt-2 space-y-2">
-            {order.updates.slice(order.updates.length-3,order.updates.length).map((update, idx) => (
-              <div key={idx} className="flex justify-between items-center text-muted py-2 rounded-md">
-                <p className="text-sm font-medium">{update.state}</p>
-                <p className={`text-sm ${selected ? "text-boxclr" : "text-textclr2"} `}>
-                  {new Date(update.timeline).toLocaleString()}
-                </p>
-              </div>
-            ))}
-          </div>
+        <div className="flex gap-3 flex-col w-full">
+          {order.updates.slice(order.updates.length-3,order.updates.length).map((update, index) => (
+            <div key={index} className="flex justify-between items-center text-muted rounded-md">
+              <p className="text-sm font-medium">{update.state}</p>
+              <p className={`text-sm ${selected ? "text-boxclr" : "text-textclr2"} `}>
+                {new Date(update.timeline).toLocaleString()}
+              </p>
+            </div>
+          ))}
         </div>
+      
       </div>
     </SpotlightBorder>
   );

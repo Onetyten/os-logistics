@@ -8,7 +8,7 @@ export default function DeliveryTimeline() {
     const {deliveryDays} = useShipmentAnalysis()
     const cardinal = curveCardinal.tension(0.2);
   return (
-    <SpotlightBorder className={`bg-boxclr rounded-md w-full row-span-3 text-xs p-3 sm:p-6 col-span-4 shadow-md`}>
+    <SpotlightBorder className={`bg-boxclr rounded-md w-full row-span-3 h-[400px] sm:h-auto text-xs p-3 sm:p-6 col-span-4 shadow-md`}>
         <p className="text-lg text-primary font-semibold mb-8">Delivery duration over time</p>
         
         <ResponsiveContainer width="100%" height="90%">

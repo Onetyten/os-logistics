@@ -41,7 +41,7 @@ export default function Invoice() {
   <div className="h-full w-full">
     <AutoSizer>
       {({ height, width }) => (
-        <List height={height} width={width} itemSize={250} itemCount={shipmentData.length} className="flex-1 hide-scrollbar w-full">
+        <List height={height} width={width} itemSize={210} itemCount={shipmentData.length} className="flex-1 hide-scrollbar w-full">
           {({ index, style }) => {
             const order = shipmentData[index];
             return (
