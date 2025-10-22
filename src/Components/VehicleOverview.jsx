@@ -10,7 +10,7 @@ export default function VehicleOverview() {
   return (
     <div className={` col-span-4 flex flex-col sm:justify-between  w-full sm:h-full xl:row-span-3 lg:row-span-4 sm:row-span-7 row-span-10 gap-2 `}>
         <SpotlightBorder className="rounded-md flex-1 sm:h-2/3 shadow-md p-3 sm:p-6 flex flex-col justify-between gap-2">
-            <p className="text-base text-primary font-semibold">Vehicles Overview</p>
+            <p className="text-base text-primary font-semibold">Vehicle Overview</p>
             <div className="flex flex-wrap lg:flex-nowrap justify-around w-full rounded-md overflow-hidden ">
                 <OverviewItem item="Checking in"  color={"bg-primary/10"} percentage={statusPerc.checkingIn} />
                 <OverviewItem item="Loading"  color={"bg-primary/20"} percentage={statusPerc.loading} />

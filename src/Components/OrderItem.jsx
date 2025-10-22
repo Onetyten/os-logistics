@@ -51,7 +51,6 @@ const OrderItem = ({ order, selectedOrder }) => {
       "Cancelled": "w-0",
       "Delivered": "w-full"
     };
-
     const selected = selectedOrder?.package_information.package_id === order?.package_information.package_id
   
   return (
@@ -80,7 +79,7 @@ const OrderItem = ({ order, selectedOrder }) => {
         </div>
 
         <div className="flex gap-3 flex-col w-full">
-          {order.updates.slice(order.updates.length-3,order.updates.length).map((update, index) => (
+          {order.updates.slice(order.updates.length-2,order.updates.length).map((update, index) => (
             <div key={index} className="flex justify-between items-center text-muted rounded-md">
               <p className="text-sm font-medium">{update.state}</p>
               <p className={`text-sm ${selected ? "text-boxclr" : "text-textclr2"} `}>
