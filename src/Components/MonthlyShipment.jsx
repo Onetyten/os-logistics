@@ -6,8 +6,8 @@ import SpotlightBorder from './SpotlightBorder';
 
 export default function MonthlyShipment() {
     const { dailyshipmentChart } = useShipmentAnalysis();
-    // const from = dailyshipmentChart[0].date;
-    // const to = dailyshipmentChart[dailyshipmentChart.length - 1].day;
+    const from = dailyshipmentChart[0].date;
+    const to = dailyshipmentChart[dailyshipmentChart.length - 2].date;
 
     return (
         <SpotlightBorder className="bg-boxclr rounded-md lg:col-span-2 xl:col-span-4 col-span-4 w-full row-span-2 sm:row-span-3 p-3 sm:p-6 overflow-hidden shadow-md">
@@ -17,9 +17,9 @@ export default function MonthlyShipment() {
               <div className='mb-20 text-muted'>
                   <CalendarHeatmap
                       values={dailyshipmentChart}
-                    //   startDate={from}
-                    //   endDate={to}
-                      showOutOfRangeDays={false}
+                      startDate={from}
+                      endDate={to}
+                      showOutOfRangeDays={true}
                       classForValue={(value) => {
                           if (!value || !value.value) return 'color-scale-0';
                           if (value.value < 2) return 'color-scale-1';

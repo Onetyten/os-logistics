@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 
 export const useShipmentAnalysis=() => {
     const shipmentData = useSelector((state)=>state.shipment.shipment)
+    const loading = useSelector(state => state.shipment.loading)
+
     const shipmentStatus = shipmentData.map(item=>item.status)
   
     const shipmentStatusObject = useMemo(()=>{
@@ -28,17 +30,21 @@ export const useShipmentAnalysis=() => {
         cancelled:shipmentStatusObject?.Cancelled,
       }
     },[shipmentStatusObject])
+
+    const percentage = (count,total)=>{
+      return total>0?Math.floor((count/total) * 100) : 0
+    } 
     
     const shipmentStatusPercentage = useMemo(()=>{
       return{
-        inStorage:Math.floor(((shipmentStatusCount?.inStorage || 0)/TotalSize)*100),
-        checkingIn:Math.floor(((shipmentStatusCount?.checkingIn ||0)/TotalSize)*100),
-        delayed:Math.floor(((shipmentStatusCount?.delayed ||0)/TotalSize)*100),
-        delivered:Math.floor(((shipmentStatusCount?.delivered ||0)/TotalSize)*100),
-        inTransit:Math.floor(((shipmentStatusCount?.inTransit||0)/TotalSize)*100),
-        loading:Math.floor(((shipmentStatusCount?.loading||0)/TotalSize)*100),
-        unloading:Math.floor(((shipmentStatusCount?.unloading ||0)/TotalSize)*100),
-        cancelled:Math.floor(((shipmentStatusCount?.cancelled ||0)/TotalSize)*100),
+        inStorage:percentage(shipmentStatusCount?.inStorage || 0, TotalSize),
+        checkingIn: percentage(shipmentStatusCount?.checkingIn || 0, TotalSize),
+        delayed: percentage(shipmentStatusCount?.delayed || 0, TotalSize),
+        delivered: percentage(shipmentStatusCount?.delivered || 0, TotalSize),
+        inTransit: percentage(shipmentStatusCount?.inTransit || 0, TotalSize),
+        loading: percentage(shipmentStatusCount?.loading || 0, TotalSize),
+        unloading: percentage(shipmentStatusCount?.unloading || 0, TotalSize),
+        cancelled: percentage(shipmentStatusCount?.cancelled || 0, TotalSize),
       }
     },[shipmentStatusCount,TotalSize])
 
@@ -68,7 +74,7 @@ export const useShipmentAnalysis=() => {
 
       const totalDistance = useMemo(()=>{
       return notDeliveredShipment.reduce((acc,item)=>{
-        acc += item.distance
+        acc += Number(item.distance) || 0
         return acc
       },0)
     },[notDeliveredShipment])
@@ -86,33 +92,38 @@ export const useShipmentAnalysis=() => {
     },[shipmentData])
 
     const dailyShipments = useMemo(()=>{
-      return shipmentData.map((item)=>item.updates[0]?.timeline)
+      return shipmentData.map((item)=>item.updates[0]?.timeline).filter(Boolean)
     },[shipmentData])
 
     const TotalbaseShippingFee = useMemo(()=>{
       return shipmentData.reduce((sum,delta)=>{
-       return sum+=delta.payment_information.base_shipping_fee
+       return Number(sum+=delta.payment_information.base_shipping_fee) || 0
       },0)
+
     },[shipmentData])
     const TotalInsuranceFee = useMemo(()=>{
       return shipmentData.reduce((sum,delta)=>{
-       return sum+=delta.payment_information.insurance_fee
+       return Number(sum+=delta.payment_information.insurance_fee) || 0
       },0)
     },[shipmentData])
     const TotalTaxes = useMemo(()=>{
       return shipmentData.reduce((sum,delta)=>{
-       return sum+=delta.payment_information.taxes
+       return Number(sum+=delta.payment_information.taxes) || 0
       },0)
     },[shipmentData])
     
     const dailyShipmentCount = useMemo(()=>{
       return dailyShipments.reduce((acc,item)=>{
         acc[item] = (acc[item]||0)+1
+        // console.log(acc)
         return acc
       },{})
     },[dailyShipments])
 
-    const dailyshipmentChart = Object.entries(dailyShipmentCount).map(([date,count])=> {
+  
+
+
+    const dailyshipmentChart = Object.entries(dailyShipmentCount).filter(([date]) => date).sort(([DateA],[DateB])=>DateA.localeCompare(DateB)).map(([date,count])=> {
       return(
         {"date":date.split("T")[0],"value":count}
       )
@@ -131,5 +142,5 @@ export const useShipmentAnalysis=() => {
         
 
 
-  return {shipmentData,TotalSize,shipmentStatusCount,shipmentStatusPercentage,intransitVehicleList,totalDistance,newOrders,preparingOrders,shippingOrders,dailyshipmentChart,deliveryDays,TotalbaseShippingFee,TotalInsuranceFee,TotalTaxes}
+  return {loading,shipmentData,TotalSize,shipmentStatusCount,shipmentStatusPercentage,intransitVehicleList,totalDistance,newOrders,preparingOrders,shippingOrders,dailyshipmentChart,deliveryDays,TotalbaseShippingFee,TotalInsuranceFee,TotalTaxes}
 }

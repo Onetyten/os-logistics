@@ -21,10 +21,10 @@ export default function VehicleOverview() {
                 <OverviewItem item="Cancelled"  color={"bg-primary/70"} percentage={statusPerc.cancelled} />
                 <OverviewItem item="Delivered" color={"bg-primary/80"} percentage={statusPerc.delivered} />
             </div>
-            <p className="text-center before:w-4 before:h-4 before:bg-primary text-muted flex gap-2 justify-center text-sm font-semibold">Number of vehicles in transit : 
+            <div className="text-center before:w-4 before:h-4 before:bg-primary text-muted flex gap-2 justify-center text-sm font-semibold">Number of vehicles in transit : 
                 <TextScramble texts={[`${shipmentStatusCount.inTransit}`]} nextLetterSpeed={50} className="text-primary" letterSpeed={30}/>
                 
-            </p>
+            </div>
 
         </SpotlightBorder>
       
@@ -36,10 +36,10 @@ export default function VehicleOverview() {
             return(
                 <SpotlightBorder key={name} className="flex col-span-4 xl:col-span-1 lg:col-span-2 sm:col-span-1 flex-col gap-1 xl:gap-4 w-full h-full justify-center items-center bg-boxclr rounded-md flex-1 shadow-md p-2 sm:p-6">
                     <TextScramble className="sm:text-base text-muted" texts={[`${name}s`]} nextLetterSpeed={50} letterSpeed={30}/>
-                    <p className="text-base font-bold text-primary">
+                    <div className="text-base font-bold text-primary">
                         <TextScramble texts={[`${count}`]} nextLetterSpeed={100} letterSpeed={50}/> 
                         
-                    </p>
+                    </div>
                 </SpotlightBorder>
             )
             })}

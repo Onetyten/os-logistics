@@ -14,7 +14,7 @@ export default function StatusGrid(prop) {
           
         </div>
         <div className="text-muted flex gap-2 w-f text-sm">
-          <TextScramble className="font-semibold text-primary" texts={[`${percentage}%`]} nextLetterSpeed={50} letterSpeed={30}/>
+          <TextScramble className="font-semibold text-primary" texts={[`${isNaN(percentage)?0:percentage}%`]} nextLetterSpeed={50} letterSpeed={30}/>
           <TextScramble texts={[`${message}`]} nextLetterSpeed={50} letterSpeed={30}/>
         </div>
     </SpotlightBorder>

@@ -6,7 +6,7 @@ export const fetchShipment = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await fetch('/json/shipmentData.json');
-      console.log(res)
+      // console.log(res)
 
       const contentType = res.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
