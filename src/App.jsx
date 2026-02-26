@@ -12,7 +12,6 @@ import { persistor, store } from "../store"
 import { PersistGate } from "redux-persist/integration/react"
 
 function App() {
-  console.log("Hello")
   const [pages,setPages] = useState(["/","invoice","map"])
   return (
     <Provider store={store}>
